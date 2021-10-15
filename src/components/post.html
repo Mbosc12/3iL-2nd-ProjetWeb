@@ -5,7 +5,8 @@
 
     article {
         border: 1px solid rgb(219, 219, 219);
-        width: 640px;
+        max-width: 640px;
+        min-width: 485px;
         height: auto;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         font-size: 14px;
@@ -22,7 +23,7 @@
         padding: 14px 4px 14px 16px;
     }
 
-    header > div {
+    header > div:not(:last-child) {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -41,8 +42,8 @@
 
     header button {
         all: unset;
-        max-width: 50px;
-        width: 50px;
+        margin-right: 26px;
+        cursor: pointer;
     }
 
     .content img {
@@ -61,7 +62,7 @@
 
     .footer_actions {
         display: flex;
-        padding: 6px 16px 8px 16px;
+        padding: 6px 16px 8px 10px;
     }
 
     .footer_actions button {
@@ -136,20 +137,82 @@
         color: #8e8e8e;
     }
 
+    .post-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .post-dropdown-menu {
+        width: max-content;
+        position: absolute;
+        right: 20px;
+        top: 30px;
+        display: none;
+        border-radius: 12px;
+        box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(219, 219, 219, 1);
+        overflow: hidden;
+    }
+
+    .post-dropdown-menu a {
+        background: white;
+        color: black;
+        display: block;
+        padding: 12px;
+        text-decoration: none;
+        user-select: none;
+    }
+
+    .post-dropdown-menu a:not(:last-child) {
+        border-bottom: 1px solid #dbdbdb;
+    }
+
+    .post-dropdown-menu a:hover {
+        background-color: #ccc;
+    }
+
+    .show {
+        display: block
+    }
+
+
 </style>
+<script>
+    function displayMenu() {
+        let [menu] = document.getElementsByClassName('post-dropdown-menu');
+        menu.classList.toggle('show');
+    }
+
+    window.onclick = function (event) {
+        console.log(event.target);
+        if (!event.target.matches('.post-dropdown-button')) {
+            let [menu] = document.getElementsByClassName('post-dropdown-menu');
+            console.log(menu.classList);
+            if (menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            }
+        }
+    }
+</script>
 <article>
 	<header>
 		<div>
 			<img src="../img/profile_pic.jpeg" height="32" width="32"/>
 			<a href="profile">Name</a>
 		</div>
-		<button type="button">
-			<svg fill="#262626" height="24" width="24">
-				<circle cx="12" cy="12" r="1.5"></circle>
-				<circle cx="6.5" cy="12" r="1.5"></circle>
-				<circle cx="17.5" cy="12" r="1.5"></circle>
-			</svg>
-		</button>
+		<div class="post-dropdown">
+			<button onclick="displayMenu()" type="button">
+				<svg class="post-dropdown-button" fill="#262626" height="24" width="24">
+					<circle cx="12" cy="12" r="1.5"></circle>
+					<circle cx="6.5" cy="12" r="1.5"></circle>
+					<circle cx="17.5" cy="12" r="1.5"></circle>
+				</svg>
+			</button>
+			<div class="post-dropdown-menu">
+				<a href="#">Se desabonner</a>
+				<a href="#">Afficher la publication</a>
+				<a href="#">Annuler</a>
+			</div>
+		</div>
 	</header>
 
 	</div>
@@ -176,7 +239,9 @@
 			<div class="post_description">
 				Description
 			</div>
-			<!--<div class="post_comments"><a href="post.html">Afficher les commentaires</a></div>-->
+			<div class="post_comments">
+				<!--<a href="post.html">Afficher les commentaires</a>-->
+			</div>
 		</div>
 		<div class="post-time">Il y a 6 heures</div>
 		<section class="post_comment">
