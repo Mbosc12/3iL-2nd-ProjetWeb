@@ -1,5 +1,26 @@
 <?php
     include 'nav.php';
+
+    if(isset($_GET['user'])) {
+
+        $query = "SELECT pseudo, nom, prenom, photo_profil FROM `utilisateur` WHERE `pseudo`=:username";
+ 	
+        $stmt = $bdd->prepare($query);
+        $stmt->bindParam('username', $_GET['user'], PDO::PARAM_STR);
+        $stmt->execute();
+        $count = $stmt->rowCount();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if($count == 1 && !empty($row)) {
+            echo $row['pseudo'];
+        } else {
+            echo "user introuvable";
+        }
+
+    } else {
+        echo "Pas de user";
+    }
 ?>
 <!DOCTYPE html>
 <html>

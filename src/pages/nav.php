@@ -27,9 +27,11 @@ if(!isset($_SESSION['pseudo'])) {
                     <div class="home"></div>
                     <img class="m-nav-options-icon" src="../img/icons/home.png">
                     <img class="m-nav-options-icon" src="../img/icons/heart.png">
-                    <?php 
-                        echo '<img src="../img/'.$_SESSION['photo_profil'].'.png" class="m-nav-options-avatar"/>';
-                    ?>
+                    <a href="/pages/profile.php">
+                        <?php 
+                            echo '<img src="../img/'.$_SESSION['photo_profil'].'.png" class="m-nav-options-avatar"/>';
+                        ?>
+                    </a>
                     <span><a href="/pages/logout.php">Se déconnecter</a></span>
                 </div>
             </div>

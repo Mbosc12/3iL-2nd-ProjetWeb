@@ -24,7 +24,7 @@ if (isset($_POST['username'])){
 
 	$row = $stmt->fetch(PDO::FETCH_ASSOC);
     	if($count == 1 && !empty($row)) {
-	        $_SESSION['pseudo']   = $row['pseudo'];
+	        $_SESSION['pseudo'] = $row['pseudo'];
 	        $_SESSION['nom'] = $row['nom'];
 	        $_SESSION['prenom'] = $row['prenom'];
        		$msg = "Bienvenue !".$row['pseudo'];
