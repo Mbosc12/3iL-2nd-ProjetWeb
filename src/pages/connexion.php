@@ -45,21 +45,22 @@ if(!isset($_SESSION['pseudo'])) {
       <head>
           <meta charset="utf-8" />
           <title>Instagram - Connexion</title>
-          <link href="../css/connexion.css" rel="stylesheet">
+          <link href="../css/connexion_signup.css" rel="stylesheet">
       </head>
       <body>
         <div class="main">
-        <article>
-            <h1>Instagram</h1>
-            <form action="" method="post">
-              <input type="text" name="username" placeholder="Nom d'utilisateur" required>
-              <input type="password" name="password" placeholder="Mot de passe">
-              <input id="connexion-button" type="submit" value="Connexion" name="login">
-              <?php if (!empty($msg)) { ?>
-                  <p class="errorMessage"><?php echo $msg; ?></p>
-              <?php } ?>
-            </form>
-        </article>
+            <article>
+                <h1>Instagram</h1>
+                <form action="" method="post">
+                  <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+                  <input type="password" name="password" placeholder="Mot de passe">
+                  <input id="connexion-button" type="submit" value="Connexion" name="login">
+                  <?php if (!empty($msg)) { ?>
+                      <p class="errorMessage"><?php echo $msg; ?></p>
+                  <?php } ?>
+                </form>
+                <a href="../pages/signup.php">S'inscrire</a>
+            </article>
         </div>
       </body>
   </html>

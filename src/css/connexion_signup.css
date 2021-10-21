@@ -1,12 +1,14 @@
 @font-face {
-    font-family: "Billabong";
-    src: url(../fonts/FontsFree-Net-Billabong.ttf) format("truetype");
+    font-family: "Grandista";
+    src: url(../fonts/Grandista.ttf) format("truetype");
 }
 
 html,
 body {
+    /*noinspection CssInvalidPropertyValue*/
     height: -webkit-fill-available;
     background: #fafafa;
+    font-family: BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;;
 }
 
 input:focus {
@@ -14,11 +16,20 @@ input:focus {
 }
 
 h1 {
-    font-family: "Billabong";
-    font-size: 60px;
+    font-family: "Grandista", serif;
+    font-size: 40px;
     margin: 22px auto 12px;
     text-align: center;
     font-weight: 100;
+}
+
+h2 {
+    text-align: center;
+    color: rgba(142, 142, 142, 1);
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 20px;
+    margin: 0 40px 10px;
 }
 
 .main {
@@ -34,6 +45,13 @@ article {
     background: white;
     padding: 10px 40px 30px 40px;
     align-items: center;
+    text-align: -webkit-center;
+}
+
+article > a {
+    color: #0095f6;
+    text-underline: #0095f6;
+    font-size: 12px;
 }
 
 form {
@@ -55,10 +73,11 @@ form > input {
     text-indent: 10px;
 }
 
-#connexion-button {
+#signup-button, #connexion-button {
     background: #0095f6;
     color: #ffffff;
     font-weight: bold;
     width: 260px;
     height: 38px;
 }
+
