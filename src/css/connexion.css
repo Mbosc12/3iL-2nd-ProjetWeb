@@ -1,0 +1,64 @@
+@font-face {
+    font-family: "Billabong";
+    src: url(../fonts/FontsFree-Net-Billabong.ttf) format("truetype");
+}
+
+html,
+body {
+    height: -webkit-fill-available;
+    background: #fafafa;
+}
+
+input:focus {
+    outline: none;
+}
+
+h1 {
+    font-family: "Billabong";
+    font-size: 60px;
+    margin: 22px auto 12px;
+    text-align: center;
+    font-weight: 100;
+}
+
+.main {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+article {
+    border: 1px solid #dbdbdb;
+    max-width: 350px;
+    background: white;
+    padding: 10px 40px 30px 40px;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+}
+
+form > input {
+    display: block;
+    border: 1px solid #dbdbdb;
+    background: #fafafa;
+    width: 258px;
+    height: 36px;
+    align-self: center;
+    margin-bottom: 7px;
+    border-radius: 3px;
+    padding: 0;
+    text-indent: 10px;
+}
+
+#connexion-button {
+    background: #0095f6;
+    color: #ffffff;
+    font-weight: bold;
+    width: 260px;
+    height: 38px;
+}
