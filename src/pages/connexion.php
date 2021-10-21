@@ -1,6 +1,6 @@
 <?php
 
-$host = "localhost"; $user = "root"; $password = ""; $dbname = "mydb";
+$host = "localhost"; $user = "root"; $password = "root"; $dbname = "insta_db";
 
 try {
 	$bdd = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
@@ -45,17 +45,22 @@ if(!isset($_SESSION['pseudo'])) {
       <head>
           <meta charset="utf-8" />
           <title>Instagram - Connexion</title>
+          <link href="../css/connexion.css" rel="stylesheet">
       </head>
       <body>
-        <p>Veuillez vous connecter</p>
-        <form action="" method="post">
-          <input type="text" name="username" placeholder="pseudo" required>
-          <input type="password" name="password" placeholder="mot de passe">
-          <input type="submit" value="Connexion" name="login">
-          <?php if (!empty($msg)) { ?>
-              <p class="errorMessage"><?php echo $msg; ?></p>
-          <?php } ?>
-        </form>
+        <div class="main">
+        <article>
+            <h1>Instagram</h1>
+            <form action="" method="post">
+              <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+              <input type="password" name="password" placeholder="Mot de passe">
+              <input id="connexion-button" type="submit" value="Connexion" name="login">
+              <?php if (!empty($msg)) { ?>
+                  <p class="errorMessage"><?php echo $msg; ?></p>
+              <?php } ?>
+            </form>
+        </article>
+        </div>
       </body>
   </html>
 <?php
