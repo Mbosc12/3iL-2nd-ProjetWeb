@@ -63,6 +63,7 @@
     .footer_actions {
         display: flex;
         padding: 6px 16px 8px 10px;
+        user-select: none;
     }
 
     .footer_actions button {
@@ -183,13 +184,21 @@
     }
 
     window.onclick = function (event) {
-        console.log(event.target);
         if (!event.target.matches('.post-dropdown-button')) {
             let [menu] = document.getElementsByClassName('post-dropdown-menu');
-            console.log(menu.classList);
             if (menu.classList.contains('show')) {
                 menu.classList.remove('show');
             }
+        }
+    }
+
+    function likePost(element) {
+        let [like] = document.getElementsByClassName('post-like');
+        like.classList.toggle('liked')
+        if (like.classList.contains('liked')) {
+            element.innerHTML = "<img src=\"../img/red_heart.png\">";
+        } else {
+            element.innerHTML = "<img src=\"../img/heart.svg\">";
         }
     }
 </script>
@@ -209,26 +218,24 @@
 			</button>
 			<div class="post-dropdown-menu">
 				<a href="#">Se desabonner</a>
-				<a href="#">Afficher la publication</a>
 				<a href="#">Annuler</a>
 			</div>
 		</div>
 	</header>
 
-	</div>
 	<div class="content">
-		<img src="../img/post_test_picture.jpeg">
+		<img src="../img/post_test_picture.jpeg" alt="post-picture">
 	</div>
 	<footer>
 		<section class="footer_actions">
-			<button>
-				<img src="../img/heart.svg">
+			<button class="post-like" onclick="likePost(this)">
+				<img src="../img/heart.svg" alt="heart">
+			</button>
+			<button onclick="document.getElementById('postCommentTextArea').focus()">
+				<img src="../img/chat-bubble.png" alt="comment">
 			</button>
 			<button>
-				<img src="../img/chat-bubble.png">
-			</button>
-			<button>
-				<img src="../img/send.png">
+				<img src="../img/send.png" alt="share">
 			</button>
 		</section>
 		<section class="footer_likes">
@@ -246,7 +253,8 @@
 		<div class="post-time">Il y a 6 heures</div>
 		<section class="post_comment">
 			<form>
-				<textarea placeholder="Ajouter un commentaire..." autocomplete="off"></textarea>
+				<textarea id='postCommentTextArea' placeholder="Ajouter un commentaire..."
+				          autocomplete="off"></textarea>
 				<button class="submit-comment-button" type="submit">Publier</button>
 			</form>
 		</section>
