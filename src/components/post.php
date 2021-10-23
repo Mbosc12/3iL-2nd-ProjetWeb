@@ -2,10 +2,10 @@
     <header>
         <div>
             <img alt="profile_picture" src="../img/profile_pic.jpeg" height="32" width="32"/>
-            <a href="../pages/profile.php">Name</a>
+            <a class="post-name" href="../pages/profil.php">Name</a>
         </div>
         <div class="post-dropdown">
-            <button onclick="displayMenu(this)" type="button">
+            <button onclick="displayPostMenu(this)" type="button">
                 <svg class="post-dropdown-button" fill="#262626" height="24" width="24">
                     <circle cx="12" cy="12" r="1.5"></circle>
                     <circle cx="6.5" cy="12" r="1.5"></circle>
@@ -13,7 +13,7 @@
                 </svg>
             </button>
             <div class="post-dropdown-menu">
-                <a href="#">Se desabonner</a>
+                <a href="#">Se désabonner</a>
                 <a href="#">Annuler</a>
             </div>
         </div>

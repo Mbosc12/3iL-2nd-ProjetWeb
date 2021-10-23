@@ -57,6 +57,15 @@ footer > * {
     padding: 0 16px 0 16px;
 }
 
+
+.post-name {
+    cursor: pointer;
+}
+
+.post-name:hover {
+    text-decoration: underline;
+}
+
 .footer_actions {
     display: flex;
     padding: 6px 16px 8px 10px;
@@ -146,8 +155,8 @@ textarea:focus {
     right: 20px;
     top: 30px;
     display: none;
-    border-radius: 12px;
-    box-shadow: 0 2px 16px 0 rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(219, 219, 219, 1);
+    border-radius: 6px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .1475);
     overflow: hidden;
 }
 
@@ -158,6 +167,7 @@ textarea:focus {
     padding: 12px;
     text-decoration: none;
     user-select: none;
+    cursor: pointer;
 }
 
 .post-dropdown-menu a:not(:last-child) {

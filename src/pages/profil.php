@@ -1,6 +1,4 @@
 <?php
-include '../components/nav.php';
-
 if (isset($_GET['user'])) {
 
     $query = "SELECT pseudo, nom, prenom, photo_profil FROM `utilisateur` WHERE `pseudo`=:username";
@@ -25,9 +23,16 @@ if (isset($_GET['user'])) {
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/profile.css">
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/nav.js"></script>
 </head>
 <body>
+<?php
+include '../components/nav.php';
+?>
 <div class="m-container">
     <div id="m-pres">
         <div id="m-avatar">

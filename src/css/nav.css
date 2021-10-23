@@ -3,17 +3,12 @@
     src: url(../fonts/Grandista.ttf) format("truetype");
 }
 
-body {
-    margin: 0;
-    background: #fafafa;
-}
-
 #m-nav-nav {
     background-color: rgba(255, 255, 255, 1);
     border-bottom: 1px solid rgba(219, 219, 219, 1);
-    height: 54px;
-    position: sticky;
-    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 3;
 }
 
 h2 {
@@ -28,11 +23,12 @@ h2 > a {
 
 .m-nav-container {
     width: 70%;
-    margin: 12px auto 0;
+    margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    height: 54px;
 }
 
 #m-nav-nav-left {
@@ -49,6 +45,10 @@ h2 > a {
     margin: 0;
 }
 
+#m-nav-logo {
+    cursor: pointer;
+}
+
 #m-nav-options {
     display: flex;
     align-items: center;
@@ -59,19 +59,6 @@ h2 > a {
     width: 22px;
     margin: 0 8px;
     cursor: pointer;
-}
-
-.m-nav-options-icon:hover, .m-nav-options-avatar:hover {
-    background: none;
-}
-
-.home {
-    background-image: url('../img/icons/home.png');
-}
-
-.m-nav-options-icon:hover {
-    transition: 0.3s;
-    background-color: #eee;
 }
 
 .m-nav-item {
@@ -111,4 +98,47 @@ h2 > a {
     -webkit-user-modify: read-write !important;
     height: 14px;
     content: url("../img/icons/cancel.png");
+}
+
+.m-nav-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.m-nav-dropdown > button {
+    all: unset;
+}
+
+.m-nav-dropdown-menu {
+    width: max-content;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    display: none;
+    border-radius: 6px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .0975);
+    overflow: hidden;
+}
+
+.m-nav-dropdown-menu a {
+    background: white;
+    color: black;
+    display: flex;
+    padding: 8px 16px 8px 16px;
+    text-decoration: none;
+    user-select: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.m-nav-dropdown-menu a:not(:last-child) {
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.m-nav-dropdown-menu a:hover {
+    background-color: #ccc;
+}
+
+.m-nav-dropdown-menu-icon {
+    margin-right: 12px;
 }

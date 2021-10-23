@@ -37,7 +37,7 @@ if (!isset($_SESSION['pseudo'])) {
             $_SESSION['nom'] = $row['nom'];
             $_SESSION['prenom'] = $row['prenom'];
             $_SESSION['photo_profil'] = $row['photo_profil'];
-            header("location:/pages/feed.php");
+            header("location:/pages/index.php");
         } else {
             $msg = "Les identifiants saisis sont incorrects !";
         }

@@ -1,15 +1,6 @@
-function displayMenu(element) {
+function displayPostMenu(element) {
     let [menu] = element.parentNode.closest('div').getElementsByClassName('post-dropdown-menu');
     menu.classList.toggle('show');
-}
-
-window.onclick = function (event) {
-    if (!event.target.matches('.post-dropdown-button')) {
-        let [menu] = document.getElementsByClassName('post-dropdown-menu');
-        if (menu.classList.contains('show')) {
-            menu.classList.remove('show');
-        }
-    }
 }
 
 function likePost(element) {
