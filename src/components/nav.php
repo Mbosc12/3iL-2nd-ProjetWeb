@@ -4,6 +4,7 @@ include '../condb.php';
 if (!isset($_SESSION['pseudo'])) {
     header("location:/pages/connexion.php");
 }
+
 ?>
 
 <nav id="m-nav-nav">
@@ -14,7 +15,12 @@ if (!isset($_SESSION['pseudo'])) {
             </h2>
         </div>
         <div id="m-nav-search" class="m-nav-item">
-            <input aria-label="search-field" placeholder="Rechercher" type="search">
+            <div id="m-nav-search-input">
+                <input placeholder="Rechercher" type="search"/>
+            </div>
+            <div id="m-nav-search-results">
+
+            </div>
         </div>
         <div id="m-nav-options" class="m-nav-item">
             <a href="../pages/index.php"><img alt="home" class="m-nav-options-icon" src="../img/icons/home.png"></a>
