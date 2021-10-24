@@ -29,16 +29,54 @@ class Model
     public static function selectUserByUsername($userSearch)
     {
         try {
-            $sql = "SELECT * FROM utilisateur WHERE utilisateur.pseudo LIKE '$userSearch%'";
+            $sql = "SELECT utilisateur.pseudo, utilisateur.photo_profil FROM utilisateur WHERE utilisateur.pseudo LIKE '$userSearch%'";
             $values = array(':pseudo_tag' => $userSearch);
             $rep = Model::$pdo->query($sql);
             $rep->execute($values);
             $rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
-            $tab = $rep->fetchAll();
-            return $tab;
+            return $rep->fetchAll();
         } catch (PDOException $e) {
             echo $e->getMessage();
             die("Erreur lors de la recherche dans la base de données.");
+        }
+    }
+
+    public static function selectUser($username)
+    {
+        try {
+            $sql = "SELECT pseudo, nom, prenom, photo_profil FROM utilisateur WHERE utilisateur.pseudo ='$username'";
+            $rep = Model::$pdo->query($sql);
+            $rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
+            return $rep->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Utilisateur introuvable");
+        }
+    }
+
+    public static function followUser($userEmail1, $userEmail2)
+    {
+        try {
+            $sql = "INSERT INTO suivre(FK_utilisateur_mail_1, FK_utilisateur_mail_2) VALUES (:user1_mail_tag, :user2_mail_tag)";
+            $values = array(':user1_mail_tag' => $userEmail1, ':user2_mail_tag' => $userEmail2);
+            $rep_prep = Model::$pdo->prepare($sql);
+            $rep_prep->execute($values);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Erreur lors de la création de la ligne dans la base de données");
+        }
+    }
+
+    public static function unfollowUser($userEmail1, $userEmail2)
+    {
+        try {
+            $sql = "DELETE FROM suivre WHERE FK_utilisateur_mail_1 = :user1_mail_tag AND FK_utilisateur_mail_2K = :user2_mail_tag";
+            $values = array(':user1_mail_tag' => $userEmail1, ':user2_mail_tag' => $userEmail2);
+            $rep_prep = Model::$pdo->prepare($sql);
+            $rep_prep->execute($values);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Erreur lors de la suppression de la ligne dans la base de données");
         }
     }
 }

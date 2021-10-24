@@ -2,7 +2,7 @@
     <header>
         <div>
             <img alt="profile_picture" src="../img/profile_pic.jpeg" height="32" width="32"/>
-            <a class="post-name" href="../pages/profil.php">Name</a>
+            <a class="post-name" href="../pages/profile.php">ana</a>
         </div>
         <div class="post-dropdown">
             <button onclick="displayPostMenu(this)" type="button">
@@ -13,8 +13,8 @@
                 </svg>
             </button>
             <div class="post-dropdown-menu">
-                <a href="#">Se désabonner</a>
-                <a href="#">Annuler</a>
+                <a onclick="">Se désabonner</a>
+                <a>Annuler</a>
             </div>
         </div>
     </header>

@@ -9,7 +9,7 @@ function displaySearchResults(users) {
     for (let user of users) {
         let div = document.createElement("div");
         let username = user.pseudo;
-        div.innerHTML = "<a class='m-nav-search-results-item' href='../pages/profil.php'>" +
+        div.innerHTML = "<a class='m-nav-search-results-item' href='../pages/profile.php?username=" + username + "'>" +
             "<img src='#'>" + username +
             "</a>";
         searchResults.appendChild(div);
@@ -26,14 +26,13 @@ function clearSearchResults() {
 
 function searchUser(search) {
     let url = "../requests/searchUserByUsername.php?search=" + search;
-    let requete = new XMLHttpRequest();
-    requete.open("GET", url, true);
-    requete.addEventListener("load", function () {
-        let data = JSON.parse(requete.responseText);
+    let request = new XMLHttpRequest();
+    request.open("GET", url, true);
+    request.addEventListener("load", function () {
+        let data = JSON.parse(request.responseText);
         displaySearchResults(data);
-        console.log(data);
     });
-    requete.send(null);
+    request.send(null);
 }
 
 window.addEventListener('DOMContentLoaded', () => {

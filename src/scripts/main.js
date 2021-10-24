@@ -13,8 +13,6 @@ window.onclick = function (event) {
         }
     }
 
-    console.log(event.target);
-
     if (!event.target.matches('#m-nav-search')) {
         let results = document.getElementById('m-nav-search-results');
         let searchField = document.getElementById('m-nav-search-input');

@@ -1,5 +1,6 @@
 <?php
-if (isset($_GET['user'])) {
+$_GET['username'];
+if (isset($_GET['username'])) {
 
     $query = "SELECT pseudo, nom, prenom, photo_profil FROM `utilisateur` WHERE `pseudo`=:username";
 
@@ -13,19 +14,22 @@ if (isset($_GET['user'])) {
     if ($count == 1 && !empty($row)) {
         echo $row['pseudo'];
     } else {
-        echo "user introuvable";
+        echo "Utilisateur introuvable";
     }
 
 } else {
-    echo "Pas de user";
+    echo "Pas de d'utilisateur";
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
+    <title>Instagram</title>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/profile.css">
+    <link rel="icon" sizes="192x192" href="../img/favicon-ig.png">
     <script src="../scripts/main.js"></script>
     <script src="../scripts/nav.js"></script>
 </head>
@@ -86,5 +90,18 @@ include '../components/nav.php';
         </div> -->
     </div>
 </div>
+<script>
+    function requestSelectUser(username) {
+        let url = "../requests/selectUser.php?username=" + username;
+        let request = new XMLHttpRequest();
+        let data;
+        request.open("GET", url, true);
+        request.addEventListener("load", function () {
+            data = JSON.parse(request.responseText);
+        });
+        request.send(null);
+        return data;
+    }
+</script>
 </body>
 </html>
