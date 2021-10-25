@@ -36,21 +36,28 @@ if(!isset($_SESSION['pseudo'])) {
       <head>
           <meta charset="utf-8" />
           <title>Instagram - Inscription</title>
+          <link href="../css/connexion_signup.css" rel="stylesheet">
       </head>
       <body>
-        <h2>Inscrivez-vous pour voir les photos et vidéos de vos amis</h2>
-        <form action="" method="post">
-          <input type="email" name="email" placeholder="e-mail" required>
-          <input type="text" name="username" placeholder="pseudo" required>
-          <input type="text" name="name" placeholder="Prénom" required>
-          <input type="text" name="firstname" placeholder="Nom" required>
-          <input type="password" name="password" placeholder="mot de passe" required>
-          <input type="date" name="birthdate" placeholder="Année de naissance" required>
-          <input type="submit" value="S'inscrire" name="signup">
-          <?php if (!empty($msg)) { ?>
-              <p class="errorMessage"><?php echo $msg; ?></p>
-          <?php } ?>
-        </form>
+          <div class="main">
+            <article>
+                <h1>Instagram</h1>
+                <h2>Inscrivez-vous pour voir les photos et vidéos de vos amis</h2>
+                <form action="" method="post">
+                  <input type="email" name="email" placeholder="E-mail" required>
+                  <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+                  <input type="text" name="name" placeholder="Prénom" required>
+                  <input type="text" name="firstname" placeholder="Nom" required>
+                  <input type="password" name="password" placeholder="Mot de passe" required>
+                  <input type="date" name="birthdate" placeholder="Date de naissance" required>
+                  <input id="signup-button" type="submit" value="S'inscrire" name="signup">
+                  <?php if (!empty($msg)) { ?>
+                      <p class="errorMessage"><?php echo $msg; ?></p>
+                  <?php } ?>
+                </form>
+                <a href="../pages/connexion.php">Se connecter</a>
+            </article>
+        </div>
       </body>
   </html>
 <?php

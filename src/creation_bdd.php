@@ -1,18 +1,18 @@
 <?php
 $host = "localhost";
 $user = "root";
-$password = "";
+$password = "root";
 
 try {
   $conn = new PDO("mysql:host=$host", $user, $password);
-  // Check error
+  // check error
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  $sql = "CREATE DATABASE mydb";
+  $sql = "CREATE DATABASE insta_db";
   // connexion
   $conn->exec($sql);
-  echo "Base de donnée créée<br>";
+  echo "Base de donnée créée </br>";
 } catch(PDOException $e) {
-  echo $sql . "<br>" . $e->getMessage();
+  echo $sql . "</br>" . $e->getMessage();
 }
 
 $conn = null;
