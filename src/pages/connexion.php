@@ -45,27 +45,29 @@ if (!isset($_SESSION['pseudo'])) {
     ?>
     <!DOCTYPE html>
     <html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Instagram - Connexion</title>
-        <link href="../css/connexion_signup.css" rel="stylesheet">
-    </head>
-    <body>
-    <div class="main">
-        <article>
-            <h1>Instagram</h1>
-            <form action="" method="post">
-                <input aria-label="username-field" type="text" name="username" placeholder="Nom d'utilisateur" required>
-                <input aria-label="password-field" type="password" name="password" placeholder="Mot de passe">
-                <input id="connexion-button" type="submit" value="Connexion" name="login">
-                <?php if (!empty($msg)) { ?>
-                    <p class="errorMessage"><?php echo $msg; ?></p>
-                <?php } ?>
-            </form>
-            <a href="../pages/signup.php">S'inscrire</a>
-        </article>
-    </div>
-    </body>
+        <head>
+            <meta charset="utf-8"/>
+            <title>Instagram - Connexion</title>
+            <link rel="icon" sizes="192x192" href="../img/favicon-ig.png">
+            <link href="../css/connexion_signup_parameters.css" rel="stylesheet">
+        </head>
+        <body>
+            <div class="main">
+                <article>
+                    <h1>Instagram</h1>
+                    <form action="" method="post">
+                        <input aria-label="username-field" type="text" name="username" placeholder="Nom d'utilisateur"
+                               required>
+                        <input aria-label="password-field" type="password" name="password" placeholder="Mot de passe">
+                        <input id="connexion-button" type="submit" value="Connexion" name="login">
+                        <?php if (!empty($msg)) { ?>
+                            <p class="errorMessage"><?php echo $msg; ?></p>
+                        <?php } ?>
+                    </form>
+                    <a href="../pages/signup.php">S'inscrire</a>
+                </article>
+            </div>
+        </body>
     </html>
     <?php
 //if connected
