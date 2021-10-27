@@ -63,6 +63,6 @@ if (!isset($_SESSION['pseudo'])) {
     <?php
 //if connected
 } else {
-    header("location:/pages/feed.php");
+    header("location:/pages/index.php");
 }
 ?>
