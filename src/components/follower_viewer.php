@@ -1,10 +1,7 @@
-<?php
-?>
 <div id="f-viewer">
-    <ul id="f-viewer-results">
-
-    </ul>
-    <button class="f-viewer-button" tabindex="-1">
-        <div class="f-viewer-button-arrow"></div>
-    </button>
+    <div id="f-viewer-results">
+        
+    </div>
+    <button class="f-viewer-btn right"><img src="../img/icons/right.png"></button>
+    <button class="f-viewer-btn left"><img src="../img/icons/left.png"></button>
 </div>
