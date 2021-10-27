@@ -2,13 +2,56 @@ function displayGetResults(users) {
     if (users.length !== 0) {
         let getResults = document.getElementById('f-viewer-results');
         for (let user of users) {
-            let li = document.createElement("li");
+            let div = document.createElement("div");
+            div.className = "f-viewer-results-item";
             let username = user.pseudo;
-            li.innerHTML = "<a class='f-viewer-results-item' href='../pages/profile.php?username=" + username + "'>" +
-                "<img src='#'>" + username +
+            div.innerHTML = "<a href='../pages/profile.php?username=\" + username + \"'>" +
+                "<img src=\"../img/profile_pic.jpeg\">" + username +
                 "</a>";
-            getResults.appendChild(li);
+            getResults.appendChild(div);
         }
+    }
+    displayItems();
+}
+
+function displayItems() {
+    let [rightBtn] = document.getElementsByClassName('right');
+    let [leftBtn] = document.getElementsByClassName('left');
+    let viewer = document.getElementById('f-viewer');
+    let followers = rightBtn.parentNode.getElementsByClassName('f-viewer-results-item');
+    if (followers.length === 0) {
+        viewer.style.display = 'none';
+    } else {
+        if (followers.length <= 8) {
+            rightBtn.style.display = 'none';
+        }
+        if (window.getComputedStyle(followers.item(0)).transform === 'none') {
+            leftBtn.style.display = 'none';
+        }
+        let slideCount = parseInt(`` + followers.length / 8);
+        rightBtn.addEventListener('click', (event) => {
+            leftBtn.style.display = 'inline-block';
+            for (let index = 0; index < followers.length; index++) {
+                let currentXTranslation = 0;
+                if (window.getComputedStyle(followers.item(index)).transform !== 'none') {
+                    currentXTranslation = parseInt(window.getComputedStyle(followers.item(index)).transform.match(/matrix.*\((.+)\)/)[1].split(', ')[4]);
+                }
+                followers.item(index).style.transform = `translateX(${currentXTranslation - 642}px)`;
+                if (parseInt(window.getComputedStyle(followers.item(index)).transform.match(/matrix.*\((.+)\)/)[1].split(', ')[4]) === slideCount * (-642)) {
+                    rightBtn.style.display = 'none';
+                }
+            }
+        });
+        leftBtn.addEventListener('click', (event) => {
+            rightBtn.style.display = 'inline-block';
+            for (let index = 0; index < followers.length; index++) {
+                let currentXTranslation = parseInt(window.getComputedStyle(followers.item(index)).transform.match(/matrix.*\((.+)\)/)[1].split(', ')[4]);
+                followers.item(index).style.transform = `translateX(${currentXTranslation + 642}px)`;
+                if (parseInt(window.getComputedStyle(followers.item(index)).transform.match(/matrix.*\((.+)\)/)[1].split(', ')[4]) === 0) {
+                    leftBtn.style.display = 'none';
+                }
+            }
+        });
     }
 }
 
