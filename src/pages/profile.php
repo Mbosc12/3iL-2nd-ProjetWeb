@@ -1,11 +1,12 @@
 <?php
-$_GET['username'];
-if (isset($_GET['username'])) {
 
+include '../components/nav.php';
+
+if (isset($_GET['username'])) {
     $query = "SELECT pseudo, nom, prenom, photo_profil FROM `utilisateur` WHERE `pseudo`=:username";
 
     $stmt = $bdd->prepare($query);
-    $stmt->bindParam('username', $_GET['user'], PDO::PARAM_STR);
+    $stmt->bindParam('username', $_GET['username'], PDO::PARAM_STR);
     $stmt->execute();
     $count = $stmt->rowCount();
 
@@ -25,7 +26,7 @@ if (isset($_GET['username'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Instagram</title>
+    <title>Instagram - Mon Profil</title>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/nav.css">
     <link rel="stylesheet" href="../css/profile.css">
@@ -34,9 +35,6 @@ if (isset($_GET['username'])) {
     <script src="../scripts/nav.js"></script>
 </head>
 <body>
-<?php
-include '../components/nav.php';
-?>
 <div class="m-container">
     <div id="m-pres">
         <div id="m-avatar">
@@ -45,7 +43,7 @@ include '../components/nav.php';
         <div id="m-infos">
             <div id="m-infos-m">
                 <ul class="m-infos-ul">
-                    <li><h3 id="m-name">Gotaga</h3></li>
+                    <li><h3 id="m-name"><?php echo $_GET['username']; ?></h3></li>
                     <li>
                         <button>Contacter</button>
                     </li>
@@ -102,6 +100,7 @@ include '../components/nav.php';
         request.send(null);
         return data;
     }
+
 </script>
 </body>
 </html>

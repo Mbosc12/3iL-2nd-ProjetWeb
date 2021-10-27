@@ -15,7 +15,7 @@ if (!isset($_SESSION['pseudo'])) {
         echo $count;
 
         $newdate = date('Y-m-d');
-        $sqlQuery = 'INSERT INTO utilisateur(pseudo, nom, prenom, mail, motdepass, date_naissance, photo_profil, date_inscription) 
+        $sqlQuery = 'INSERT INTO utilisateur(pseudo, nom, prenom, mail, mot_de_passe, date_naissance, photo_profil, date_inscription) 
         VALUES (:username, :firstname, :name, :email, :password, :birthdate, null, :date)';
 
         $insertRecipe = $bdd->prepare($sqlQuery);

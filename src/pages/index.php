@@ -1,3 +1,7 @@
+<?php
+    include '../components/nav.php';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -13,6 +17,7 @@
         <script src="../scripts/nav.js"></script>
         <script src="../scripts/follower_viewer.js"></script>
         <script src="../scripts/post.js"></script>
+        <script src="../scripts/feed.js"></script>
     </head>
     <body>
         <?php

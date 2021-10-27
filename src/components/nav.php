@@ -46,7 +46,9 @@ if (!isset($_SESSION['pseudo'])) {
                     ?>
                 </button>
                 <div class="m-nav-dropdown-menu">
-                    <a href="../pages/profile.php">
+                    <?php 
+                    echo '<a href="../pages/profile.php?username='. $_SESSION['pseudo'].'">';
+                    ?>
                         <svg aria-label="Profil" class="m-nav-dropdown-menu-icon" color="#262626" fill="#262626"
                              height="16"
                              viewBox="0 0 32 32" width="16">
