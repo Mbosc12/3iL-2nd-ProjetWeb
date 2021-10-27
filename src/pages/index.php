@@ -1,7 +1,3 @@
-<?php
-    include '../components/nav.php';
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
