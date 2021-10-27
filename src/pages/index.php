@@ -1,3 +1,7 @@
+<?php
+    include '../components/nav.php';
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,14 +15,12 @@
     <script src="../scripts/main.js"></script>
     <script src="../scripts/nav.js"></script>
     <script src="../scripts/post.js"></script>
+    <script src="../scripts/feed.js"></script>
 </head>
 <body>
-<?php
-include '../components/nav.php';
-?>
 <main>
     <?php
-    include '../components/feed.php';
+        include '../components/feed.php';
     ?>
 </main>
 </body>
