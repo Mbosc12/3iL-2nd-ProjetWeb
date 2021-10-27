@@ -54,6 +54,19 @@ class Model
         }
     }
 
+    public static function selectUserByMail($mail)
+    {
+        try {
+            $sql = "SELECT pseudo, photo_profil FROM utilisateur WHERE utilisateur.mail ='$mail'";
+            $rep = Model::$pdo->query($sql);
+            $rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
+            return $rep->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Utilisateur introuvable");
+        }
+    }
+
     public static function followUser($userEmail1, $userEmail2)
     {
         try {
@@ -79,6 +92,89 @@ class Model
             die("Erreur lors de la suppression de la ligne dans la base de données");
         }
     }
+
+    public static function getPostsFollowed($username)
+    {
+        try {
+            $sql = "SELECT FK_post_id FROM publication pub
+            INNER JOIN (SELECT FK_post_id FROM publier P
+                INNER JOIN(
+                    SELECT FK_utilisateur_mail_2 FROM suivre WHERE FK_utilisateur_mail_1 IN (SELECT 
+                    utilisateur.mail FROM utilisateur WHERE pseudo = '$username')
+                ) s ON s.FK_utilisateur_mail_2 = P.FK_utilisateur_mail
+            ) p ON p.FK_post_id = pub.PK_post_id";
+            $rep = Model::$pdo->query($sql);
+            $rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
+            return $rep->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Utilisateur introuvable");
+        }
+    }
+
+    public static function getPost($id)
+    {
+        try {
+            $sql = "SELECT * FROM publication WHERE PK_post_id=$id";
+            $rep = Model::$pdo->query($sql);
+            $rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
+            return $rep->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Publication introuvable");
+        }
+    }
+
+
+    // PARTIE LIKES ----------------------------------------------------------------------------------------------------
+
+    public static function getLikes($id)
+    {
+        try {
+            $sql = "SELECT COUNT(*) FROM `aimer` WHERE FK_post_id = $id";
+            $rep = Model::$pdo->query($sql);
+            $rep->setFetchMode(PDO::FETCH_NUM);
+            return $rep->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Publication introuvable");
+        }
+    }
+
+    public static function setLike($mail, $id)
+    {
+        try {
+            $date = date('Y-m-d');
+
+            $sql = "INSERT INTO liker(FK_utilisateur_mail, FK_post_id, date_like) VALUES (:mail, :ud, :date)";
+            $values = array(':mail' => $mail, ':id' => $id, ':date'=> $date);
+            $rep_prep = Model::$pdo->prepare($sql);
+            $rep_prep->execute($values);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Impossible de liker");
+        }
+    }
+
+    // PARTIE PASSWORD --------------------------------------------------------------------------------------------------
+
+    public static function setPassword($mail, $password)
+    {
+        try {
+            $date = date('Y-m-d');
+
+            $sql = "UPDATE `utilisateur` SET `mot_de_passe`=:password WHERE mail = :mail";
+            $values = array(':mail' => $mail, ':password' => $password);
+            $rep_prep = Model::$pdo->prepare($sql);
+            $rep_prep->execute($values);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Utilisateur introuvable");
+        }
+    }
+
+    
+
 }
 
 // on initialise la connexion $pdo
