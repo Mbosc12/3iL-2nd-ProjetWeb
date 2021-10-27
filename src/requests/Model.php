@@ -111,6 +111,22 @@ class Model
             die("Utilisateur introuvable");
         }
     }
+          
+    public static function getAllFollowers($username)
+    {
+        try {
+            $sql = "SELECT pseudo, photo_profil FROM utilisateur U
+                    INNER JOIN(
+                    SELECT FK_utilisateur_mail_2 FROM suivre WHERE FK_utilisateur_mail_1 IN (SELECT
+                    utilisateur.mail FROM utilisateur WHERE pseudo = '$username'))S ON U.mail = S.FK_utilisateur_mail_2";
+            $rep = Model::$pdo->query($sql);
+            $rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
+            return $rep->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Utilisateur introuvable");
+        }
+    }
 
     public static function getPost($id)
     {
@@ -172,9 +188,6 @@ class Model
             die("Utilisateur introuvable");
         }
     }
-
-    
-
 }
 
 // on initialise la connexion $pdo

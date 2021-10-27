@@ -5,16 +5,18 @@ function displayNavMenu(element) {
 
 function displaySearchResults(users) {
     clearSearchResults();
-    let searchResults = document.getElementById('m-nav-search-results');
-    for (let user of users) {
-        let div = document.createElement("div");
-        let username = user.pseudo;
-        div.innerHTML = "<a class='m-nav-search-results-item' href='../pages/profile.php?username=" + username + "'>" +
-            "<img src='#'>" + username +
-            "</a>";
-        searchResults.appendChild(div);
+    if (users.length !== 0) {
+        let searchResults = document.getElementById('m-nav-search-results');
+        for (let user of users) {
+            let div = document.createElement("div");
+            let username = user.pseudo;
+            div.innerHTML = "<a class='m-nav-search-results-item' href='../pages/profile.php?username=" + username + "'>" +
+                "<img src='#'>" + username +
+                "</a>";
+            searchResults.appendChild(div);
+        }
+        searchResults.style.display = 'block';
     }
-    searchResults.style.display = 'block';
 }
 
 function clearSearchResults() {
