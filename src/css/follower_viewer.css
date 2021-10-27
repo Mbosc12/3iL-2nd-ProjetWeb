@@ -1,0 +1,77 @@
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+}
+
+#f-viewer {
+    background: white;
+    border: 1px solid rgba(219, 219, 219, 1);
+    border-radius: 3px;
+    padding: 16px 0 16px 0;
+    max-width: 640px;
+    min-width: 485px;
+    display: flex;
+    width: -webkit-fill-available;
+    height: 84px;
+    margin-bottom: 24px;
+    position: relative;
+    justify-content: center;
+}
+
+#f-viewer-results {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    text-align: center;
+}
+
+.f-viewer-results-item {
+    margin: 0 12px 0 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: end;
+}
+
+.f-viewer-results-item > a {
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    font-size: 12px;
+}
+
+.f-viewer-results-item > a > img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.f-viewer-btn {
+    position: absolute;
+    cursor: pointer;
+    top: 50%;
+    user-select: none;
+    border: none;
+    width: 20px;
+    height: 20px;
+    background: none;
+}
+
+.f-viewer-btn > img {
+    width: 10px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, .05);
+    border-radius: 50%;
+    padding: 5px;
+    background: white;
+}
+
+.right {
+    right: 10px;
+}
+
+.left {
+    left: 10px;
+}
