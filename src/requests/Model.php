@@ -128,6 +128,48 @@
 			}
 		}
 
+		public static function getCountFollowers ($username)
+		{
+			try {
+				$sql = "SELECT COUNT(*) as countFollowers FROM suivre WHERE FK_utilisateur_mail_2 IN (SELECT
+                    utilisateur.mail FROM utilisateur WHERE pseudo = '$username')";
+				$rep = Model::$pdo->query($sql);
+				$rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
+				return $rep->fetchAll();
+			} catch (PDOException $e) {
+				echo $e->getMessage();
+				die("Utilisateur introuvable");
+			}
+		}
+
+		public static function getCountSubscriptions ($username)
+		{
+			try {
+				$sql = "SELECT COUNT(*) as countSubscriptions FROM suivre WHERE FK_utilisateur_mail_1 IN (SELECT
+                    utilisateur.mail FROM utilisateur WHERE pseudo = '$username')";
+				$rep = Model::$pdo->query($sql);
+				$rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
+				return $rep->fetchAll();
+			} catch (PDOException $e) {
+				echo $e->getMessage();
+				die("Utilisateur introuvable");
+			}
+		}
+
+		public static function getIsSubscribed ($user_mail_1, $username_2)
+		{
+			try {
+				$sql = "SELECT COUNT(*) as isSubscribed FROM suivre WHERE FK_utilisateur_mail_1 = '$user_mail_1' AND FK_utilisateur_mail_2 
+        			IN (SELECT utilisateur.mail FROM utilisateur WHERE pseudo = '$username_2')";
+				$rep = Model::$pdo->query($sql);
+				$rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
+				return $rep->fetchAll();
+			} catch (PDOException $e) {
+				echo $e->getMessage();
+				die("\nErreur lors de la requête vers la base de données");
+			}
+		}
+
 		public static function getPost ($id)
 		{
 			try {
