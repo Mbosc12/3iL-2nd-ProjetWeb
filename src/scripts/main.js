@@ -8,7 +8,7 @@ window.onclick = function (event) {
 
     if (!event.target.matches('.post-dropdown-button')) {
         let [menu] = document.getElementsByClassName('post-dropdown-menu');
-        if (menu.classList.contains('show')) {
+        if (menu && menu.classList.contains('show')) {
             menu.classList.remove('show');
         }
     }
