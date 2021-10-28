@@ -138,10 +138,6 @@
     margin-right: 15px;
 }
 
-.show {
-    display: block;
-}
-
 .m-nav-dropdown {
     position: relative;
     display: inline-block;
@@ -183,4 +179,8 @@
 
 .m-nav-dropdown-menu-icon {
     margin-right: 12px;
+}
+
+.show {
+    display: block;
 }

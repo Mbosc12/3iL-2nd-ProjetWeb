@@ -5,7 +5,7 @@ function displayGetResults(users) {
             let div = document.createElement("div");
             div.className = "f-viewer-results-item";
             let username = user.pseudo;
-            div.innerHTML = "<a href='../pages/profile.php?username=\" + username + \"'>" +
+            div.innerHTML = "<a href='../pages/profile.php?username=" + username + "'>" +
                 "<img src=\"../img/profile_pic.jpeg\">" + username +
                 "</a>";
             getResults.appendChild(div);
