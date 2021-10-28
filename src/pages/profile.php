@@ -25,8 +25,8 @@
                         <div id="m-infos-m">
                             <ul class="m-infos-ul">
                                 <li><h2 id="m-name"><?php echo $_GET['username']; ?></h2></li>
-                                <li>
-                                    <button id="m-subscribe-button">
+                                <li id="m-infos-li">
+                                    <button id="m-infos-subscribe-button">
                                         <span>S'abonner</span>
                                     </button>
                                 </li>
@@ -34,9 +34,9 @@
                         </div>
                         <div id="m-infos-stats">
                             <ul class="m-infos-ul">
-                                <li><span id="m-infos-publications">245</span> publications</li>
-                                <li><span id="m-infos-followers">245</span> abonnés</li>
-                                <li><span id="m-infos-subscription">245</span> abonnements</li>
+                                <li><span id="m-infos-publications"></span> publications</li>
+                                <li><span id="m-infos-followers"></span> abonnés</li>
+                                <li><span id="m-infos-subscription"></span> abonnements</li>
                             </ul>
                         </div>
                         <div id="m-infos-main">
@@ -67,8 +67,17 @@
         </main>
         <script>
             window.addEventListener('DOMContentLoaded', () => {
-                requestSelectUser('<?php echo $_GET['username']; ?>');
-                requestGetAllPosts('<?php echo $_SESSION['mail']; ?>');
+                let username = '<?php echo $_GET['username']; ?>';
+                let email = '<?php echo $_SESSION['mail']; ?>';
+                requestSelectUser(username);
+                requestGetAllPosts(email);
+                requestGetCountFollowers(username);
+                requestGetCountSubscriptions(username);
+                let subButton = document.getElementById('m-infos-li');
+                if (username === '<?php echo $_SESSION['pseudo']; ?>') {
+                    subButton.innerHTML = '<button id="m-infos-parameters-button"><span>Modifier profil</span></button>';
+                }
+                requestGetIsSubscribed(email, username);
             });
         </script>
     </body>
