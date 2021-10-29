@@ -19,26 +19,35 @@
     <head>
         <link rel="stylesheet" href="../css/main.css">
         <link rel="stylesheet" href="../css/nav.css">
+        <link rel="stylesheet" href="../css/newPost.css">
         <link rel="icon" sizes="192x192" href="../img/icons/favicon-ig.png">
+        <script src="../scripts/main.js"></script>
         <script src="../scripts/nav.js"></script>
         <script src="../scripts/newPost.js"></script>
     </head>
     <body>
         <?php include '../components/nav.php'; ?>
-        <div style="margin-top: 80px;">
-            <h1> Ajout d'un nouveau post </h1>
-            <form method="post" enctype="multipart/form-data">
-                <label>Photo</label>
-                <input type="file" id="img" name="img" accept="image/png, image/jpeg" onchange="readURL(this)" required>
+        <main id="m-newPost">
+            <article>
+                <h1 id="m-newPost-title"> Ajouter une publication </h1>
+                <form id="m-newPost-form" method="post" enctype="multipart/form-data">
+                    <label>Photo</label>
+                    <div id="m-newPost-form-photo">
+                        <input type="file" id="img" name="img" accept="image/png, image/jpeg" onchange="readURL(this)"
+                               required>
 
-                <img id="showImage" src="#" alt="Image du post" style="display: none;">
+                        <img id="showImage" src="#" alt="Image du post" style="display: none;">
+                    </div>
+                    <label>Description</label>
+                    <label>
+                        <textarea id="m-newPost-form-textarea" rows="5" cols="52" column maxlength="256" type="text"
+                                  name="desc"></textarea>
+                    </label>
 
-                <label>Description</label>
-                <input type="text" name="desc">
-
-                <input type="submit" value="Ajouter un nouveau post" name="submit">
-            </form>
-        </div>
+                    <input id="m-newPost-form-submit" type="submit" value="Partager" name="submit">
+                </form>
+            </article>
+        </main>
     </body>
 </html>
 
