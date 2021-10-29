@@ -11,12 +11,12 @@
     z-index: 3;
 }
 
-#m-nav-logo > h2 {
+h2 {
     font-family: "Grandista", serif;
     font-weight: 100;
 }
 
-#m-nav-logo > h2 > a {
+h2 > a {
     text-decoration: none;
     color: black;
 }
@@ -138,6 +138,10 @@
     margin-right: 15px;
 }
 
+.show {
+    display: block;
+}
+
 .m-nav-dropdown {
     position: relative;
     display: inline-block;
@@ -179,8 +183,4 @@
 
 .m-nav-dropdown-menu-icon {
     margin-right: 12px;
-}
-
-.show {
-    display: block;
 }
