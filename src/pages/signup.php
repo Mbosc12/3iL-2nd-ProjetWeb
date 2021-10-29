@@ -11,8 +11,6 @@ if (!isset($_SESSION['pseudo'])) {
         $stmt->bindParam('username', $_POST['username'], PDO::PARAM_STR);
         $stmt->execute();
         $count = $stmt->rowCount();
-        echo $_POST['email'];
-        echo $count;
 
         $newdate = date('Y-m-d');
         $sqlQuery = 'INSERT INTO utilisateur(pseudo, nom, prenom, mail, mot_de_passe, date_naissance, photo_profil, date_inscription) 

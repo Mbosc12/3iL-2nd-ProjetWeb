@@ -1,20 +1,3 @@
-<?php
-    include '../requests/Model.php';
-
-    if(isset($_FILES['img'])) {
-        $desc = $_POST['desc'];
-
-        $tmpName = $_FILES['img']['tmp_name'];
-        $name = $_FILES['img']['name'];
-
-        $date = date("Y-m-d-H-i-s");
-
-        move_uploaded_file($tmpName, '../img/'.$_SESSION['pseudo'].''.$date).'png';
-        Model::setPost($_SESSION['mail'], $name, $desc);
-    }
-?>
-
-
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -42,3 +25,19 @@
         </div>
     </body>
 </html>
+
+<?php
+    include '../requests/Model.php';
+
+    if(isset($_FILES['img'])) {
+        $desc = $_POST['desc'];
+
+        $tmpName = $_FILES['img']['tmp_name'];
+        $name = $_FILES['img']['name'];
+
+        $date = date("Y-m-d-H-i-s");
+
+        move_uploaded_file($tmpName, '../img/'.$_SESSION['pseudo'].''.$date).'png';
+        Model::setPost($_SESSION['mail'], $name, $desc);
+    }
+?>
