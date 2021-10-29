@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../css/main.css">
         <link rel="stylesheet" href="../css/nav.css">
         <link rel="stylesheet" href="../css/profile.css">
-        <link rel="icon" sizes="192x192" href="../img/favicon-ig.png">
+        <link rel="icon" sizes="192x192" href="../img/icons/favicon-ig.png">
         <script src="../scripts/main.js"></script>
         <script src="../scripts/nav.js"></script>
         <script src="../scripts/profile.js"></script>

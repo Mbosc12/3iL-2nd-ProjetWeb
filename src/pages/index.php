@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="../css/follower_viewer.css">
         <link rel="stylesheet" href="../css/feed.css">
         <link rel="stylesheet" href="../css/post.css">
-        <link rel="icon" sizes="192x192" href="../img/favicon-ig.png">
+        <link rel="icon" sizes="192x192" href="../img/icons/favicon-ig.png">
         <script src="../scripts/main.js"></script>
         <script src="../scripts/nav.js"></script>
         <script src="../scripts/follower_viewer.js"></script>
@@ -17,14 +17,14 @@
     </head>
     <body>
         <?php
-        include '../components/nav.php';
+            include '../components/nav.php';
         ?>
         <main id="main">
             <?php
-            include '../components/follower_viewer.php';
+                include '../components/follower_viewer.php';
             ?>
             <?php
-            include '../components/feed.php';
+                include '../components/feed.php';
             ?>
         </main>
         <script type='text/javascript'>
