@@ -22,7 +22,7 @@
             $password = stripslashes($_REQUEST['password']);
 
             //request
-            $query = "SELECT * FROM `utilisateur` WHERE `pseudo`=:username and `mot_de_passe`=:password";
+            $query = "SELECT * FROM `utilisateur` WHERE `pseudo`=:username and `motdepass`=:password";
 
             $stmt = $bdd->prepare($query);
             $stmt->bindParam('username', $username, PDO::PARAM_STR);
