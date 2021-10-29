@@ -49,7 +49,7 @@
             <head>
                 <meta charset="utf-8"/>
                 <title>Instagram - Connexion</title>
-                <link rel="icon" sizes="192x192" href="../img/favicon-ig.png">
+                <link rel="icon" sizes="192x192" href="../img/icons/favicon-ig.png">
                 <link href="../css/connexion_signup_parameters.css" rel="stylesheet">
             </head>
             <body>
