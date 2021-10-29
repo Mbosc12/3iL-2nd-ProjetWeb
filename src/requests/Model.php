@@ -184,7 +184,7 @@
 		public static function getAllPosts ($userEmail)
 		{
 			try {
-				$sql = "SELECT * FROM publication WHERE FK_utilisateur_mail=$userEmail";
+				$sql = "SELECT * FROM publication WHERE FK_utilisateur_mail = '$userEmail'";
 				$rep = Model::$pdo->query($sql);
 				$rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
 				return $rep->fetchAll();
@@ -251,23 +251,23 @@
 			}
 		}
 
-    // PARTIE POSTS --------------------------------------------------------------------------------------------------
+		// PARTIE POSTS --------------------------------------------------------------------------------------------------
 
-    public static function setPost($mail, $photo, $desc)
-    {
-        try {
-            $date = date('Y-m-d');
+		public static function setPost ($mail, $photo, $desc)
+		{
+			try {
+				$date = date('Y-m-d');
 
-            $sql = "INSERT INTO publication(FK_utilisateur_mail, message, photo) VALUES (:mail, :message, :photo)";
-            $values = array(':mail' => $mail, ':message' => $desc, ':photo' => $photo);
-            $rep_prep = Model::$pdo->prepare($sql); 
-            $rep_prep->execute($values);
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            die("Utilisateur introuvable");
-        }
-    }
-}
+				$sql = "INSERT INTO publication(FK_utilisateur_mail, message, photo) VALUES (:mail, :message, :photo)";
+				$values = array(':mail' => $mail, ':message' => $desc, ':photo' => $photo);
+				$rep_prep = Model::$pdo->prepare($sql);
+				$rep_prep->execute($values);
+			} catch (PDOException $e) {
+				echo $e->getMessage();
+				die("Utilisateur introuvable");
+			}
+		}
+	}
 
 	// on initialise la connexion $pdo
 	Model::init_pdo();

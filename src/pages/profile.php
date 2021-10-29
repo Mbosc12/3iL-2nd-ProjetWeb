@@ -56,11 +56,7 @@
                 </div>
                 <div id="m-gallery">
                     <ul>
-                        <li><img src="../img/test.jpg"></li>
-                        <li><img src="../img/test-grandjpg.jpg"></li>
-                        <li><img src="../img/test-grandjpg.jpg"></li>
-                        <li><img src="../img/test.jpg"></li>
-                        <li><img src="../img/test.jpg"></li>
+                        
                     </ul>
                 </div>
             </div>

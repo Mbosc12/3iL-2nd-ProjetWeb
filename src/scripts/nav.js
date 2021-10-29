@@ -5,8 +5,8 @@ function displayNavMenu(element) {
 
 function displaySearchResults(users) {
     clearSearchResults();
+    let searchResults = document.getElementById('m-nav-search-results');
     if (users.length !== 0) {
-        let searchResults = document.getElementById('m-nav-search-results');
         for (let user of users) {
             let div = document.createElement("div");
             let username = user.pseudo;
@@ -15,6 +15,9 @@ function displaySearchResults(users) {
                 "</a>";
             searchResults.appendChild(div);
         }
+        searchResults.style.display = 'block';
+    } else {
+        searchResults.innerHTML = "<div id='m-nav-search-results-no'>Aucun résultat</div>";
         searchResults.style.display = 'block';
     }
 }

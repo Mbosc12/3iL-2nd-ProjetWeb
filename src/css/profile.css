@@ -16,7 +16,6 @@
 #m-avatar-img {
     background-size: contain;
     background-position: 50% 50%;
-    background-image: url("../img/avatar.jpg");
     background-repeat: no-repeat;
     display: inline-block;
     width: 150px;
@@ -140,7 +139,7 @@
     margin: 0 auto;
 }
 
-#m-gallery ul li {
+#m-gallery > ul > li {
     width: 280px;
     height: 280px;
     display: flex;

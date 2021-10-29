@@ -44,12 +44,8 @@
         $name = $_FILES['img']['name'];
         $type = pathinfo($name, PATHINFO_EXTENSION);
         $date = date("Y-m-d-H-i-s");
-
-        if (file_exists('../img/user-images/' . $_SESSION['pseudo'] . '/')) {
-            var_dump('../img/user-images/' . $_SESSION['pseudo'] . '/');
-        }
-
-        move_uploaded_file($tmpName, '../img/user-images/' . $_SESSION['pseudo'] . '/' . $date . '.' . $type);
-        Model::setPost($_SESSION['mail'], $name, $desc);
+        
+        move_uploaded_file($tmpName, '../img/user-images/' . $_SESSION['pseudo'] . '_' . $date . '.' . $type);
+        Model::setPost($_SESSION['mail'], $_SESSION['pseudo'] . '_' . $date . '.' . $type, $desc);
     }
 ?>
