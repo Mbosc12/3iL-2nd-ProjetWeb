@@ -5,7 +5,7 @@
 
     $request = Model::getPostsFollowed($username);
     foreach ($request as $req) {
-        $id = $req->FK_post_id;
+        $id = $req->PK_post_id;
         $_GET['id'] = $id;
         include '../components/post.php';
     }

@@ -96,13 +96,11 @@
 		public static function getPostsFollowed ($username)
 		{
 			try {
-				$sql = "SELECT FK_post_id FROM publication pub
-            INNER JOIN (SELECT FK_post_id FROM publier P
-                INNER JOIN(
-                    SELECT FK_utilisateur_mail_2 FROM suivre WHERE FK_utilisateur_mail_1 IN (SELECT 
-                    utilisateur.mail FROM utilisateur WHERE pseudo = '$username')
-                ) s ON s.FK_utilisateur_mail_2 = P.FK_utilisateur_mail
-            ) p ON p.FK_post_id = pub.PK_post_id";
+				$sql = "SELECT PK_post_id FROM publication pub
+				INNER JOIN(
+					SELECT FK_utilisateur_mail_2 FROM suivre WHERE FK_utilisateur_mail_1 IN (SELECT 
+					utilisateur.mail FROM utilisateur WHERE pseudo = '$username')
+				) p ON p.FK_utilisateur_mail_2 = pub.FK_utilisateur_mail";
 				$rep = Model::$pdo->query($sql);
 				$rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
 				return $rep->fetchAll();
