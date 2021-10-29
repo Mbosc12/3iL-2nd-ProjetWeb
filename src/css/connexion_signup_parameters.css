@@ -17,15 +17,15 @@ input:focus {
 
 h1 {
     font-family: "Grandista", serif;
-    font-size: 40px;
+    font-size: 35px;
     margin: 22px auto 12px;
     text-align: center;
-    font-weight: 100;
+    font-weight: 300;
 }
 
 #m-parameters-article > h1 {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 45px;
+    font-size: 35px;
 }
 
 #m-signup-article > h2 {
@@ -81,8 +81,9 @@ form > input {
 #signup-button, #connexion-button, #parameters-button {
     background: #0095f6;
     color: #ffffff;
-    font-weight: bold;
+    font-weight: 600;
     width: 260px;
     height: 38px;
+    border: 1px solid transparent;
 }
 

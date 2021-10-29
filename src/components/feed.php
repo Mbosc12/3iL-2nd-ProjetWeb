@@ -4,6 +4,9 @@
     $username = $_SESSION['pseudo'];
 
     $request = Model::getPostsFollowed($username);
+    if (sizeof($request) === 0) {
+        echo '<h1 id="m-feed-no-pub">Aucune publication</h1>';
+    }
     foreach ($request as $req) {
         $id = $req->PK_post_id;
         $_GET['id'] = $id;
@@ -11,7 +14,7 @@
     }
 ?>
 <script type="text/javascript">
-    var username = '<?php echo $_SESSION['pseudo']; ?>'
+    let username = '<?php echo $_SESSION['pseudo']; ?>'
 </script>
 
 <div id="feed">
