@@ -23,12 +23,7 @@ h1 {
     font-weight: 100;
 }
 
-#m-parameters-article > h1 {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-size: 45px;
-}
-
-#m-signup-article > h2 {
+h2 {
     text-align: center;
     color: rgba(142, 142, 142, 1);
     font-size: 17px;
@@ -78,7 +73,7 @@ form > input {
     text-indent: 10px;
 }
 
-#signup-button, #connexion-button, #parameters-button {
+#signup-button, #connexion-button {
     background: #0095f6;
     color: #ffffff;
     font-weight: bold;
