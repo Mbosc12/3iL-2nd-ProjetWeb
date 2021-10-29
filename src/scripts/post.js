@@ -7,9 +7,9 @@ function likePost(element) {
     let [like] = document.getElementsByClassName('post-like');
     like.classList.toggle('liked')
     if (like.classList.contains('liked')) {
-        element.innerHTML = "<img alt='read-heart' src=\"../img/red_heart.png\">";
+        element.innerHTML = "<img alt='read-heart' src=\"../img/icons/red_heart.png\">";
     } else {
-        element.innerHTML = "<img alt='heart' src=\"../img/heart.svg\">";
+        element.innerHTML = "<img alt='heart' src=\"../img/icons/heart.svg\">";
     }
 }
 

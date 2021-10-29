@@ -1,20 +1,20 @@
 <?php
-    if(isset($_GET['id'])) {
+    if (isset($_GET['id'])) {
         $posts = Model::getPost($_GET['id']);
-        foreach($posts as $post) {
+        foreach ($posts as $post) {
             $desc = $post->message;
             $img = $post->photo;
             $mail = $post->FK_utilisateur_mail;
         }
 
         $userInfo = Model::selectUserByMail($mail);
-        foreach($userInfo as $info) {
+        foreach ($userInfo as $info) {
             $pseudo = $info->pseudo;
             $photo = $info->photo_profil;
         }
 
         $likesInfo = Model::getLikes($_GET['id']);
-        foreach($likesInfo as $info) {
+        foreach ($likesInfo as $info) {
             $likes = $info[0];
         }
     }
@@ -23,7 +23,7 @@
 <article>
     <header>
         <div>
-            <?php echo '<img alt="profile_picture" src="../img/'.$photo.'" height="32" width="32"/>' ?>
+            <?php echo '<img alt="profile_picture" src="../img/' . $photo . '" height="32" width="32"/>' ?>
             <a class="post-name" href="../pages/profile.php"><?php echo $pseudo; ?></a>
         </div>
         <div class="post-dropdown">
@@ -42,24 +42,21 @@
     </header>
 
     <div class="content">
-        <?php echo '<img src="../img/'.$img.'" alt="post-picture">'; ?>
+        <?php echo '<img src="../img/' . $img . '" alt="post-picture">'; ?>
     </div>
     <footer>
         <section class="footer_actions">
             <button class="post-like" onclick="likePost(this)">
-                <img src="../img/heart.svg" alt="heart">
+                <img src="../img/icons/heart.svg" alt="heart">
             </button>
             <button onclick="commentPost(this)">
-                <img src="../img/chat-bubble.png" alt="comment">
-            </button>
-            <button>
-                <img src="../img/send.png" alt="share">
+                <img src="../img/icons/chat-bubble.png" alt="comment">
             </button>
         </section>
         <section class="footer_likes">
             <span><?php echo $likes; ?></span>
-            <?php 
-                if($likes <= 1) {
+            <?php
+                if ($likes <= 1) {
                     echo "J'aime";
                 } else {
                     echo "J'aimes";

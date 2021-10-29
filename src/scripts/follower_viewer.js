@@ -29,7 +29,7 @@ function displayItems() {
         if (window.getComputedStyle(followers.item(0)).transform === 'none') {
             leftBtn.style.display = 'none';
         }
-        let slideCount = parseInt(`` + followers.length / 8);
+        let slideCount = parseInt(`` + followers.length / 9);
         rightBtn.addEventListener('click', (event) => {
             leftBtn.style.display = 'inline-block';
             for (let index = 0; index < followers.length; index++) {
@@ -60,11 +60,13 @@ function getAllFollowers(username) {
     let url = "../requests/getAllFollowers.php?username=" + username;
     let request = new XMLHttpRequest();
     request.open("GET", url, true);
-    request.addEventListener("load", function () {
-        let data = JSON.parse(request.responseText);
-        displayGetResults(data);
-    });
-    request.send(null);
+    request.onreadystatechange = function () {
+        if (request.status === 200 && request.readyState === 4) {
+            let data = JSON.parse(request.responseText);
+            displayGetResults(data);
+        }
+    }
+    request.send();
 }
 
 window.addEventListener('DOMContentLoaded', () => {
