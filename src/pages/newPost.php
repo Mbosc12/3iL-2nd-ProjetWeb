@@ -1,6 +1,5 @@
 <?php
     include '../requests/Model.php';
-    include '../components/nav.php';
 
     if(isset($_FILES['img'])) {
         $desc = $_POST['desc'];
@@ -26,17 +25,20 @@
     <script src="../scripts/newPost.js"></script>
     </head>
     <body>
-        <h1> Ajout d'un nouveau post </h1>
-        <form method="post" enctype="multipart/form-data">
-            <label>Photo</label>
-            <input type="file" id="img" name="img" accept="image/png, image/jpeg" onchange="readURL(this)" required>
-            
-            <img id="showImage" src="#" alt="Image du post" style="display: none;">
-            
-            <label>Description</label>
-            <input type="text" name="desc">
+        <?php include '../components/nav.php'; ?>
+        <div style="margin-top: 80px;">
+            <h1> Ajout d'un nouveau post </h1>
+            <form method="post" enctype="multipart/form-data">
+                <label>Photo</label>
+                <input type="file" id="img" name="img" accept="image/png, image/jpeg" onchange="readURL(this)" required>
+                
+                <img id="showImage" src="#" alt="Image du post" style="display: none;">
+                
+                <label>Description</label>
+                <input type="text" name="desc">
 
-            <input type="submit" value="Ajouter un nouveau post" name="submit">
-        </form>
+                <input type="submit" value="Ajouter un nouveau post" name="submit">
+            </form>
+        </div>
     </body>
 </html>
