@@ -5,7 +5,6 @@ function requestSelectUser(username) {
     request.open("GET", url, true);
     request.addEventListener("load", function () {
         data = JSON.parse(request.responseText);
-        displaySelectUserData([data]);
     });
     request.send(null);
     return data;
@@ -98,4 +97,3 @@ function displayIsSubscribed(data) {
         subBtn.innerHTML = '<button id="m-infos-unsubscribe-button"><span>Se désabonner</span></button>';
     }
 }
-

@@ -25,8 +25,8 @@
 				die("Problème lors de la connexion à la base de données.");
 			}
 		}
-
-		public static function selectUserByUsername ($userSearch)
+    
+    		public static function selectUserByUsername ($userSearch)
 		{
 			try {
 				$sql = "SELECT utilisateur.pseudo, utilisateur.photo_profil FROM utilisateur WHERE utilisateur.pseudo LIKE '$userSearch%'";
@@ -170,19 +170,6 @@
 			}
 		}
 
-		public static function getPost ($id)
-		{
-			try {
-				$sql = "SELECT * FROM publication WHERE PK_post_id=$id";
-				$rep = Model::$pdo->query($sql);
-				$rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
-				return $rep->fetchAll();
-			} catch (PDOException $e) {
-				echo $e->getMessage();
-				die("Publication introuvable");
-			}
-		}
-
 		public static function getAllPosts ($userEmail)
 		{
 			try {
@@ -225,25 +212,58 @@
 			}
 		}
 
-		// PARTIE PASSWORD --------------------------------------------------------------------------------------------------
+    public static function getPost($id)
+    {
+        try {
+            $sql = "SELECT * FROM publication WHERE PK_post_id=$id";
+            $rep = Model::$pdo->query($sql);
+            $rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
+            return $rep->fetchAll();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Publication introuvable");
+        }
+    }
 
-		public static function setPassword ($mail, $password)
-		{
-			try {
-				$date = date('Y-m-d');
 
-				$sql = "UPDATE `utilisateur` SET `mot_de_passe`=:password WHERE mail = :mail";
-				$values = array(':mail' => $mail, ':password' => $password);
-				$rep_prep = Model::$pdo->prepare($sql);
-				$rep_prep->execute($values);
-			} catch (PDOException $e) {
-				echo $e->getMessage();
-				die("Utilisateur introuvable");
-			}
-		}
-	}
+    // PARTIE PASSWORD --------------------------------------------------------------------------------------------------
 
-	// on initialise la connexion $pdo
-	Model::init_pdo();
+    public static function setPassword($mail, $password)
+    {
+        try {
+            $date = date('Y-m-d');
+
+            $sql = "UPDATE `utilisateur` SET `mot_de_passe`=:password WHERE mail = :mail";
+            $values = array(':mail' => $mail, ':password' => $password);
+            $rep_prep = Model::$pdo->prepare($sql);
+            $rep_prep->execute($values);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Utilisateur introuvable");
+        }
+    }
+
+    // PARTIE POSTS --------------------------------------------------------------------------------------------------
+
+    public static function setPost($mail, $photo, $desc)
+    {
+        try {
+            $date = date('Y-m-d');
+
+            $sql = "INSERT INTO publication(FK_utilisateur_mail, message, photo) VALUES (:mail, :message, :photo)";
+            $values = array(':mail' => $mail, ':message' => $desc, ':photo' => $photo);
+            $rep_prep = Model::$pdo->prepare($sql); 
+            $rep_prep->execute($values);
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die("Utilisateur introuvable");
+        }
+    }
+    
+
+}
+
+// on initialise la connexion $pdo
+Model::init_pdo();
 
 ?>
