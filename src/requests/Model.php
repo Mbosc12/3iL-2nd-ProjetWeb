@@ -67,11 +67,12 @@
 			}
 		}
 
-		public static function followUser ($userEmail1, $userEmail2)
+		public static function followUser ($userEmail1, $username_2)
 		{
 			try {
-				$sql = "INSERT INTO suivre(FK_utilisateur_mail_1, FK_utilisateur_mail_2) VALUES (:user1_mail_tag, :user2_mail_tag)";
-				$values = array(':user1_mail_tag' => $userEmail1, ':user2_mail_tag' => $userEmail2);
+				$sql = "SET @user2_mail = (SELECT mail FROM utilisateur WHERE utilisateur.pseudo ='$username_2');
+						INSERT INTO suivre(FK_utilisateur_mail_1, FK_utilisateur_mail_2) VALUES (:user1_mail_tag, @user2_mail)";
+				$values = array(':user1_mail_tag' => $userEmail1);
 				$rep_prep = Model::$pdo->prepare($sql);
 				$rep_prep->execute($values);
 			} catch (PDOException $e) {
@@ -181,10 +182,12 @@
 			}
 		}
 
-		public static function getAllPosts ($userEmail)
+		public static function getAllPosts ($username)
 		{
 			try {
-				$sql = "SELECT * FROM publication WHERE FK_utilisateur_mail = '$userEmail'";
+				$sql = "SELECT * FROM publication pub INNER JOIN( SELECT mail FROM utilisateur WHERE mail IN 
+						(SELECT utilisateur.mail FROM utilisateur WHERE pseudo = '$username') ) p 
+						ON p.mail = pub.FK_utilisateur_mail";
 				$rep = Model::$pdo->query($sql);
 				$rep->setFetchMode(PDO::FETCH_CLASS, 'Model');
 				return $rep->fetchAll();
