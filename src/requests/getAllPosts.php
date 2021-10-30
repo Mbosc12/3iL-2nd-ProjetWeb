@@ -2,8 +2,8 @@
 
 	require_once('Model.php');
 
-	$email = $_GET['email'];
+	$username = $_GET['username'];
 
-	$request = Model::getAllPosts($email);
+	$request = Model::getAllPosts($username);
 
 	echo json_encode($request);

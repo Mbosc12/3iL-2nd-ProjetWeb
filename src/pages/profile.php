@@ -56,11 +56,7 @@
                 </div>
                 <div id="m-gallery">
                     <ul>
-                        <li><img src="../img/test.jpg"></li>
-                        <li><img src="../img/test-grandjpg.jpg"></li>
-                        <li><img src="../img/test-grandjpg.jpg"></li>
-                        <li><img src="../img/test.jpg"></li>
-                        <li><img src="../img/test.jpg"></li>
+
                     </ul>
                 </div>
             </div>
@@ -70,13 +66,16 @@
                 let username = '<?php echo $_GET['username']; ?>';
                 let email = '<?php echo $_SESSION['mail']; ?>';
                 requestSelectUser(username);
-                requestGetAllPosts(email);
+                requestGetAllPosts(username);
                 requestGetCountFollowers(username);
                 requestGetCountSubscriptions(username);
                 let subButton = document.getElementById('m-infos-li');
                 if (username === '<?php echo $_SESSION['pseudo']; ?>') {
                     subButton.innerHTML = `<button id="m-infos-parameters-button" onclick="window.location.href='../pages/parameters.php'"><span>Modifier profil</span></button>`;
                 }
+                document.getElementById('m-infos-subscribe-button').addEventListener('click', () => {
+                    requestFollowUser(email, username);
+                });
                 requestGetIsSubscribed(email, username);
             });
         </script>

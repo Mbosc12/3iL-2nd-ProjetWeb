@@ -5,18 +5,20 @@ function requestSelectUser(username) {
     request.open("GET", url, true);
     request.addEventListener("load", function () {
         data = JSON.parse(request.responseText);
-        displaySelectUserData([data]);
+        displaySelectUserData(data);
     });
     request.send(null);
     return data;
 }
 
 function displaySelectUserData(data) {
-    document.getElementById('m-infos-main-name').innerText = data.prenom + ' ' + data.nom;
+    if (data[0].prenom && data[0].nom) {
+        document.getElementById('m-infos-main-name').innerText = data[0].prenom + ' ' + data[0].nom;
+    }
 }
 
-function requestGetAllPosts(email) {
-    let url = "../requests/getAllPosts.php?email=" + email;
+function requestGetAllPosts(username) {
+    let url = "../requests/getAllPosts.php?username=" + username;
     let request = new XMLHttpRequest();
     let data;
     request.open("GET", url, true);
@@ -32,14 +34,20 @@ function requestGetAllPosts(email) {
     return data;
 }
 
-function displayAllPost(data) {
+function displayAllPost(publications) {
     let publication_count = document.getElementById('m-infos-publications');
-    let gallery = document.getElementById('m-gallery');
-    if (data === null) {
+    let gallery = document.getElementById('m-gallery').getElementsByTagName('ul')[0];
+    if (publications.length === 0) {
         publication_count.innerText = '0';
-        gallery.innerHTML = "<h1 id='m-gallery-no-pub'>Aucune publication</h1>"
+        gallery.innerHTML = "<h1 id='m-gallery-no-pub'>Aucune publication</h1>";
     } else {
-        console.log(data);
+        publication_count.innerText = publications.length;
+        for (let publication in publications) {
+            let li = document.createElement("li");
+            let photo_path = publications[publication].photo;
+            li.innerHTML = "<img src=\"../img/user-images/" + photo_path + "\">";
+            gallery.appendChild(li);
+        }
     }
 }
 
@@ -93,9 +101,18 @@ function requestGetIsSubscribed(email_1, username_2) {
 }
 
 function displayIsSubscribed(data) {
+    let subBtn = document.getElementById('m-infos-li');
     if (data.isSubscribed === '1') {
-        let subBtn = document.getElementById('m-infos-li');
         subBtn.innerHTML = '<button id="m-infos-unsubscribe-button"><span>Se désabonner</span></button>';
     }
+}
+
+function requestFollowUser(email_1, username_2) {
+    let url = "../requests/followUser.php?email_1=" + email_1 + "&username_2=" + username_2;
+    let request = new XMLHttpRequest();
+    request.open("GET", url, true);
+    request.send();
+    let subBtn = document.getElementById('m-infos-li');
+    subBtn.innerHTML = '<button id="m-infos-unsubscribe-button"><span>Se désabonner</span></button>';
 }
 
