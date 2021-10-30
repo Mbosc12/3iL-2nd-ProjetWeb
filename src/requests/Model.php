@@ -81,11 +81,12 @@
 			}
 		}
 
-		public static function unfollowUser ($userEmail1, $userEmail2)
+		public static function unfollowUser ($userEmail1, $username_2)
 		{
 			try {
-				$sql = "DELETE FROM suivre WHERE FK_utilisateur_mail_1 = :user1_mail_tag AND FK_utilisateur_mail_2K = :user2_mail_tag";
-				$values = array(':user1_mail_tag' => $userEmail1, ':user2_mail_tag' => $userEmail2);
+				$sql = "SET @user2_mail = (SELECT mail FROM utilisateur WHERE utilisateur.pseudo ='$username_2');
+						DELETE FROM suivre WHERE FK_utilisateur_mail_1 = :user1_mail_tag AND FK_utilisateur_mail_2 = @user2_mail";
+				$values = array(':user1_mail_tag' => $userEmail1);
 				$rep_prep = Model::$pdo->prepare($sql);
 				$rep_prep->execute($values);
 			} catch (PDOException $e) {
