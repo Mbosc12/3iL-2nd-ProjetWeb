@@ -114,7 +114,7 @@ function requestGetIsSubscribed(email_1, username_2) {
     request.onreadystatechange = function () {
         if (request.status === 200 && request.readyState === 4) {
             [data] = JSON.parse(request.responseText);
-            displayIsSubscribed(data);
+            displayIsSubscribed(parseInt(data.isSubscribed), email_1, username_2);
         }
     }
     request.send();
@@ -122,11 +122,27 @@ function requestGetIsSubscribed(email_1, username_2) {
 }
 
 //Affiche en fonction de la requête au dessus un bouton 'se désabonner' 
-function displayIsSubscribed(data) {
+function displayIsSubscribed(sub, email_1, username_2) {
     let subBtn = document.getElementById('m-infos-li');
-    if (data.isSubscribed === '1') {
+    if (sub === 1) {
         subBtn.innerHTML = '<button id="m-infos-unsubscribe-button"><span>Se désabonner</span></button>';
+        document.getElementById('m-infos-unsubscribe-button').addEventListener('click', () => {
+            requestUnfollowUser(email_1, username_2);
+        });
+    } else {
+        subBtn.innerHTML = '<button id="m-infos-subscribe-button"><span>S\'abonner</span></button>';
+        document.getElementById('m-infos-subscribe-button').addEventListener('click', () => {
+            requestFollowUser(email_1, username_2);
+        });
     }
+}
+
+function requestUnfollowUser(email_1, username_2) {
+    let url = "../requests/unfollowUser.php?email_1=" + email_1 + "&username_2=" + username_2;
+    let request = new XMLHttpRequest();
+    request.open("GET", url, true);
+    request.send();
+    displayIsSubscribed(0, email_1, username_2);
 }
 
 function requestFollowUser(email_1, username_2) {
@@ -134,7 +150,6 @@ function requestFollowUser(email_1, username_2) {
     let request = new XMLHttpRequest();
     request.open("GET", url, true);
     request.send();
-    let subBtn = document.getElementById('m-infos-li');
-    subBtn.innerHTML = '<button id="m-infos-unsubscribe-button"><span>Se désabonner</span></button>';
+    displayIsSubscribed(1, email_1, username_2);
 }
 
