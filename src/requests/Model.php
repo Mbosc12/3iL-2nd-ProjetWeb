@@ -215,15 +215,39 @@
 		public static function setLike ($mail, $id)
 		{
 			try {
-				$date = date('Y-m-d');
-
-				$sql = "INSERT INTO liker(FK_utilisateur_mail, FK_post_id, date_like) VALUES (:mail, :ud, :date)";
-				$values = array(':mail' => $mail, ':id' => $id, ':date' => $date);
+				$sql = "INSERT INTO aimer(FK_utilisateur_mail, FK_post_id) VALUES (:mail, :id)";
+				$values = array(':mail' => $mail, ':id' => $id);
 				$rep_prep = Model::$pdo->prepare($sql);
 				$rep_prep->execute($values);
 			} catch (PDOException $e) {
 				echo $e->getMessage();
-				die("Impossible de liker");
+				die("\nImpossible de liker");
+			}
+		}
+
+		public static function removeLike ($mail, $id)
+		{
+			try {
+				$sql = "DELETE FROM aimer WHERE 	FK_utilisateur_mail = :mail AND FK_post_id = :id";
+				$values = array(':mail' => $mail, ':id' => $id);
+				$rep_prep = Model::$pdo->prepare($sql);
+				$rep_prep->execute($values);
+			} catch (PDOException $e) {
+				echo $e->getMessage();
+				die("\nImpossible de supprimer le like");
+			}
+		}
+
+		public static function isLiked ($mail, $id)
+		{
+			try {
+				$sql = "SELECT COUNT(*) FROM `aimer` WHERE FK_utilisateur_mail = '$mail' AND FK_post_id = $id";
+				$rep = Model::$pdo->query($sql);
+				$rep->setFetchMode(PDO::FETCH_NUM);
+				return $rep->fetchAll();
+			} catch (PDOException $e) {
+				echo $e->getMessage();
+				die("\nErreur lors de la recherche");
 			}
 		}
 
