@@ -14,7 +14,7 @@
     }
 ?>
 <script type="text/javascript">
-    let username = '<?php echo $_SESSION['pseudo']; ?>'
+    let email = '<?php echo $_SESSION['mail']; ?>';
 </script>
 
 <div id="feed">

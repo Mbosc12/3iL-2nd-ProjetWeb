@@ -20,10 +20,10 @@
     }
 ?>
 
-<article>
+<article id="post-<?php echo $_GET['id']; ?>">
     <header>
         <div>
-            <?php echo '<img alt="profile_picture" src="../img/' . $photo . '" height="32" width="32"/>' ?>
+            <?php echo '<img src="../img/' . $photo . '" height="32" width="32"/>' ?>
             <a class="post-name" href="../pages/profile.php"><?php echo $pseudo; ?></a>
         </div>
         <div class="post-dropdown">
@@ -42,15 +42,14 @@
     </header>
 
     <div class="content">
-        <?php echo '<img src="../img/' . $img . '" alt="post-picture">'; ?>
+        <?php echo '<img src="../img/user-images/' . $img . '">'; ?>
     </div>
     <footer>
         <section class="footer_actions">
-            <button class="post-like" onclick="likePost(this)">
-                <img src="../img/icons/heart.svg" alt="heart">
-            </button>
-            <button onclick="commentPost(this)">
-                <img src="../img/icons/chat-bubble.png" alt="comment">
+            <button class="post-like" onclick="likePost(this, <?php echo $_GET['id'] ?>)">
+                <script>
+                    isLiked('<?php echo $_SESSION['mail']; ?>', '<?php echo $_GET['id'] ?>');
+                </script>
             </button>
         </section>
         <section class="footer_likes">
@@ -67,17 +66,7 @@
             <div class="post_description">
                 <?php echo $desc; ?>
             </div>
-            <div class="post_comments">
-                <!--<a href="post.php">Afficher les commentaires</a>-->
-            </div>
         </div>
         <div class="post-time">Il y a 6 heures</div>
-        <section class="post_comment">
-            <form action="">
-				<textarea aria-label="comment-field" class='postCommentTextArea' placeholder="Ajouter un commentaire..."
-                          autocomplete="off"></textarea>
-                <button class="submit-comment-button" type="submit">Publier</button>
-            </form>
-        </section>
     </footer>
 </article>
