@@ -13,7 +13,7 @@
         <script src="../scripts/nav.js"></script>
         <script src="../scripts/follower_viewer.js"></script>
         <script src="../scripts/post.js"></script>
-        <script src="../scripts/feed.js"></script>
+        <!-- <script src="../scripts/feed.js"></script> -->
     </head>
     <body>
         <?php
@@ -21,7 +21,10 @@
         ?>
         <main id="main">
             <?php
-                include '../components/follower_viewer.php';
+                //ancien viewer fait par mathis: à voir si on le garde avec le prof
+                // include '../components/follower_viewer.php';
+                //nouveau viewer plus simple
+                include '../components/new_viewer.php';
             ?>
             <?php
                 include '../components/feed.php';

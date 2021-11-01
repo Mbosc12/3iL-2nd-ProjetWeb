@@ -33,14 +33,17 @@ function searchUser(search) {
     let url = "../requests/searchUserByUsername.php?search=" + search;
     let request = new XMLHttpRequest();
     request.open("GET", url, true);
-    request.addEventListener("load", function () {
-        let data = JSON.parse(request.responseText);
-        displaySearchResults(data);
-    });
-    request.send(null);
+    request.onreadystatechange = function () {
+        if (request.status === 200 && request.readyState === 4) {
+            let data = JSON.parse(request.responseText);
+            displaySearchResults(data);
+        }
+    }
+    request.send();
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+
+window.onload = function() {
     let input = document.getElementById('m-nav-search-input').firstElementChild;
     input.addEventListener('input', () => {
         if (input.value !== '') {
@@ -50,5 +53,5 @@ window.addEventListener('DOMContentLoaded', () => {
             document.getElementById('m-nav-search-results').style.display = 'none';
         }
     });
-});
+}
 

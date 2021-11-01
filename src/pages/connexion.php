@@ -1,8 +1,7 @@
 <?php
-
     $host = "localhost";
     $user = "root";
-    $password = "root";
+    $password = "";
     $dbname = "insta_db";
 
     try {
@@ -10,6 +9,9 @@
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
+
+    include '../requests/Model.php';
+
     //start session
     session_start();
 
@@ -36,11 +38,18 @@
                 $_SESSION['pseudo'] = $row['pseudo'];
                 $_SESSION['nom'] = $row['nom'];
                 $_SESSION['prenom'] = $row['prenom'];
-                $_SESSION['photo_profil'] = $row['photo_profil'];
                 $_SESSION['mail'] = $row['mail'];
+
+                try {
+                    $photo_profil = Model::getPhotoProfil($row['mail'])['photo_profil'];
+                    $_SESSION['photo_profil'] = $photo_profil;
+                } catch(PDOException $e) {
+                    Print 'Error :'. $e.getMessage().'</br>';
+                }
                 header("location:/pages/index.php");
             } else {
                 $msg = "Les identifiants saisis sont incorrects !";
+                header("location:/pages/connexion.php?error=1&msg=1");
             }
         }
         ?>
@@ -51,8 +60,24 @@
                 <title>Instagram - Connexion</title>
                 <link rel="icon" sizes="192x192" href="../img/icons/favicon-ig.png">
                 <link href="../css/connexion_signup_parameters.css" rel="stylesheet">
+                <link href="../css/banner.css" rel="stylesheet">
             </head>
             <body>
+                <?php
+                    //affiche la bannière montrant que l'utilisateur a bien été crée
+                    if(isset($_GET['valid']) || isset($_GET['error'])) {
+                        include '../components/banner.php';
+
+                        //permet de supprimer la bannière au bout de 3 secondes
+                        echo '<script type="text/javascript">
+                        var displayBanner = setInterval(function(){ 
+                                var banner = document.getElementsByClassName("banner");
+                                banner[0].style.display = "none";
+                                clearInterval(displayBanner);
+                            }, 3000);
+                        </script>';
+                    }
+                ?>
                 <div class="main">
                     <article>
                         <h1>Instagram</h1>

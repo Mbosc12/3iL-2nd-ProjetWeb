@@ -7,7 +7,7 @@ function displayGetResults(users) {
             let username = user.pseudo;
             let photo = user.photo_profil;
             div.innerHTML = "<a href='../pages/profile.php?username=" + username + "'>" +
-                "<img src=\"../img/"+photo+".png\">" + username +
+                "<img src=\"../img/user-images/"+photo+".png\">" + username +
                 "</a>";
             getResults.appendChild(div);
         }

@@ -7,7 +7,7 @@
         <link rel="icon" sizes="192x192" href="../img/icons/favicon-ig.png">
         <script src="../scripts/main.js"></script>
         <script src="../scripts/nav.js"></script>
-        <script src="../scripts/newPost.js"></script>
+        <script src="../scripts/showImage.js"></script>
     </head>
     <body>
         <?php include '../components/nav.php'; ?>
@@ -19,7 +19,6 @@
                     <div id="m-newPost-form-photo">
                         <input type="file" id="img" name="img" accept="image/png, image/jpeg" onchange="readURL(this)"
                                required>
-
                         <img id="showImage" src="#" alt="Image du post" style="display: none;">
                     </div>
                     <label>Description</label>
@@ -45,7 +44,13 @@
         $type = pathinfo($name, PATHINFO_EXTENSION);
         $date = date("Y-m-d-H-i-s");
         
-        move_uploaded_file($tmpName, '../img/user-images/' . $_SESSION['pseudo'] . '_' . $date . '.' . $type);
-        Model::setPost($_SESSION['mail'], $_SESSION['pseudo'] . '_' . $date . '.' . $type, $desc);
+        try {
+            move_uploaded_file($tmpName, '../img/user-images/' . $_SESSION['pseudo'] . '_' . $date . '.' . $type);
+            Model::setPost($_SESSION['mail'], $_SESSION['pseudo'] . '_' . $date . '.' . $type, $desc);    
+            //TODO
+            // die(header("location:/pages/index.php?valid=0&msg=2"));
+        } catch (PDOException $e) {
+            Print 'Error :'.$e.getMessage().'</br>';
+        }
     }
 ?>
