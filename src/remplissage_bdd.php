@@ -22,7 +22,7 @@
 		$sql = ("DROP TABLE IF EXISTS publication ");
 		$conn->exec($sql);
 
-		$sql = "CREATE TABLE publication(PK_post_id INT AUTO_INCREMENT, FK_utilisateur_mail VARCHAR(50), message VARCHAR(50) NOT NULL, photo VARCHAR(50) NOT NULL, PRIMARY KEY(PK_post_id), FOREIGN KEY(FK_utilisateur_mail) REFERENCES utilisateur(mail))";
+		$sql = "CREATE TABLE publication(PK_post_id INT AUTO_INCREMENT, FK_utilisateur_mail VARCHAR(50), message VARCHAR(50) NOT NULL, photo VARCHAR(50) NOT NULL, PRIMARY KEY(PK_post_id), FOREIGN KEY(FK_utilisateur_mail) REFERENCES utilisateur(mail) ON DELETE CASCADE)";
 		// use exec() because no results are returned
 		$conn->exec($sql);
 		echo "2/4 Table \"publication\" created </br>";
@@ -33,7 +33,7 @@
 		$sql = ("DROP TABLE IF EXISTS suivre ");
 		$conn->exec($sql);
 
-		$sql = "CREATE TABLE suivre(FK_utilisateur_mail_1 VARCHAR(50), FK_utilisateur_mail_2 VARCHAR(50), date_follow TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(), PRIMARY KEY(FK_utilisateur_mail_1, FK_utilisateur_mail_2), FOREIGN KEY(FK_utilisateur_mail_1) REFERENCES utilisateur(mail), FOREIGN KEY(FK_utilisateur_mail_2) REFERENCES utilisateur(mail))";
+		$sql = "CREATE TABLE suivre(FK_utilisateur_mail_1 VARCHAR(50), FK_utilisateur_mail_2 VARCHAR(50), date_follow TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(), PRIMARY KEY(FK_utilisateur_mail_1, FK_utilisateur_mail_2), FOREIGN KEY(FK_utilisateur_mail_1) REFERENCES utilisateur(mail) ON DELETE CASCADE, FOREIGN KEY(FK_utilisateur_mail_2) REFERENCES utilisateur(mail) ON DELETE CASCADE)";
 		// use exec() because no results are returned
 		$conn->exec($sql);
 		echo "3/4 Table \"suivre\" created </br>";
@@ -43,7 +43,7 @@
 		$sql = ("DROP TABLE IF EXISTS aimer ");
 		$conn->exec($sql);
 
-		$sql = "CREATE TABLE aimer(FK_utilisateur_mail VARCHAR(50), FK_post_id INT, date_like TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(), PRIMARY KEY(FK_utilisateur_mail, FK_post_id),FOREIGN KEY(FK_utilisateur_mail) REFERENCES utilisateur(mail), FOREIGN KEY(FK_post_id) REFERENCES publication(PK_post_id))";
+		$sql = "CREATE TABLE aimer(FK_utilisateur_mail VARCHAR(50), FK_post_id INT, date_like TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(), PRIMARY KEY(FK_utilisateur_mail, FK_post_id),FOREIGN KEY(FK_utilisateur_mail) REFERENCES utilisateur(mail) ON DELETE CASCADE, FOREIGN KEY(FK_post_id) REFERENCES publication(PK_post_id) ON DELETE CASCADE)";
 		// use exec() because no results are returned
 		$conn->exec($sql);
 		echo "4/4 Table \"aimer\" created </br>";
