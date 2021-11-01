@@ -67,6 +67,5 @@
                 <?php echo $desc; ?>
             </div>
         </div>
-        <div class="post-time">Il y a 6 heures</div>
     </footer>
 </article>
