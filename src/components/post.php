@@ -23,7 +23,7 @@
 <article>
     <header>
         <div>
-            <?php echo '<img alt="profile_picture" src="../img/' . $photo . '" height="32" width="32"/>' ?>
+            <?php echo '<img alt="profile_picture" src="../img/user-images/' . $photo . '" height="32" width="32"/>' ?>
             <a class="post-name" href="../pages/profile.php"><?php echo $pseudo; ?></a>
         </div>
         <div class="post-dropdown">
@@ -42,7 +42,7 @@
     </header>
 
     <div class="content">
-        <?php echo '<img src="../img/' . $img . '" alt="post-picture">'; ?>
+        <?php echo '<img src="../img/user-images/' . $img . '" alt="post-picture">'; ?>
     </div>
     <footer>
         <section class="footer_actions">

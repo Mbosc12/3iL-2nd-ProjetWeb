@@ -259,8 +259,6 @@
 		public static function setPost ($mail, $photo, $desc)
 		{
 			try {
-				$date = date('Y-m-d');
-
 				$sql = "INSERT INTO publication(FK_utilisateur_mail, message, photo) VALUES (:mail, :message, :photo)";
 				$values = array(':mail' => $mail, ':message' => $desc, ':photo' => $photo);
 				$rep_prep = Model::$pdo->prepare($sql);
@@ -270,8 +268,40 @@
 				die("Utilisateur introuvable");
 			}
 		}
-	}
 
+		public static function updatePost ($id, $desc)
+		{
+			try {
+				$date = date('Y-m-d');
+				$sql = "UPDATE `utilisateur` SET `mot_de_passe`=:password WHERE mail = :mail";
+
+				$sql = "UPDATE `publication` SET `message`=:message WHERE PK_post_id = :id";
+				$values = array(':message' => $desc, ':id' => $id);
+				$rep_prep = Model::$pdo->prepare($sql);
+				$rep_prep->execute($values);
+			} catch (PDOException $e) {
+				echo $e->getMessage();
+				die("Post introuvable");
+			}
+		}
+
+
+
+		// PARTIE PROFIL --------------------------------------------------------------------------------------------------
+
+		public static function getPhotoProfil($mail)
+		{
+			try {
+				$sql = "SELECT photo_profil FROM `utilisateur` WHERE mail = '$mail'";
+				$rep = Model::$pdo->query($sql);
+				$rep->setFetchMode(PDO::FETCH_ASSOC);
+				return $rep->fetch();
+			} catch (PDOException $e) {
+				echo $e->getMessage();
+				die("Utilisateur introuvable");
+			}
+		}
+	}
 	// on initialise la connexion $pdo
 	Model::init_pdo();
 
