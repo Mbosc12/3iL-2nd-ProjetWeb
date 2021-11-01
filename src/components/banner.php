@@ -1,22 +1,27 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/banner.css">
-</head>
-<body>
-    <?php 
-        if(isset($_GET['error']) == 1) {
-            echo "
-            <div class='banner red'>
-                <span> Votre changement n'a pas été pris en compte </span>
-            </div>";
+<div>
+<?php 
+        if(isset($_GET['error'])) {
+            if($_GET['msg'] == 0) {
+                echo '
+                <div class="banner b-red">
+                    <span class="b-span"> Votre changement n\'a pas été pris en compte </span>
+                </div>';
+            } else if($_GET['msg'] == 1) {
+                echo '
+                <div class="banner b-red">
+                    <span class="b-span"> La connexion n\'a pas pu être établie </span>
+                </div>';
+            }
         } else {
-            echo "
-            <div class='banner green'>
-                <span> Votre changement a bien été pris en compte </span>
-            </div>";
+            if($_GET['msg'] == 0) {
+                echo '<div class="banner b-green">
+                    <span class="b-span"> Votre changement a bien été pris en compte </span>
+                </div>';
+            } else if ($_GET['msg'] == 1) {
+                echo '<div class="banner b-green">
+                <span class="b-span"> L\'utilisateur a bien été crée </span>
+                </div>';
+            }
         }
     ?>
-</body>
-</html>
+</div>

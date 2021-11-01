@@ -12,6 +12,8 @@
         } else {
             echo $_SESSION['mail'];
             Model::setPassword($_SESSION['mail'], $new_pass);
+            //TODO
+            //header('location'...)
         }
     }
 ?>

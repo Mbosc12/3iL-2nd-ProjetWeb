@@ -6,7 +6,6 @@
 html,
 body {
     /*noinspection CssInvalidPropertyValue*/
-    height: -webkit-fill-available;
     background: #fafafa;
     font-family: BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;;
 }
@@ -50,12 +49,10 @@ article {
     background: white;
     padding: 10px 40px 30px 40px;
     align-items: center;
-    text-align: -webkit-center;
 }
 
 article > a {
     color: #0095f6;
-    text-underline: #0095f6;
     font-size: 12px;
 }
 
@@ -87,3 +84,7 @@ form > input {
     border: 1px solid transparent;
 }
 
+#showImage {
+    max-width: 640px;
+    height: auto;
+}

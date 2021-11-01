@@ -1,7 +1,7 @@
 <?php
     include '../condb.php';
 
-    if (!isset($_SESSION['pseudo'])) {
+    if(!isset($_SESSION['pseudo'])) {
         header("location:/pages/connexion.php");
     }
 ?>
@@ -37,7 +37,7 @@
             <div class="m-nav-dropdown">
                 <button onclick="displayNavMenu(this)">
                     <?php
-                        echo '<img src="../img/' . $_SESSION['photo_profil'] . '.png" class="m-nav-options-avatar m-nav-dropdown-button"/>';
+                        echo '<img src="../img/user-images/' . $_SESSION['photo_profil'] . '" class="m-nav-options-avatar m-nav-dropdown-button"/>';
                     ?>
                 </button>
                 <div class="m-nav-dropdown-menu">
