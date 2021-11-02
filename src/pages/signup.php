@@ -10,8 +10,8 @@
     </head>
     <body>
         <?php
-
             include '../condb.php';
+            include '../scripts/resizeImageFunc.php';
 
             if (!isset($_SESSION['pseudo'])) {
             if (isset($_POST['email'])) {
@@ -25,23 +25,17 @@
 
                 //si l'utilisateur défini une image
                 if (isset($_FILES['img'])) {
-                    $desc = $_POST['desc'];
-                    $tmpName = $_FILES['img']['tmp_name'];
-                    $name = $_FILES['img']['name'];
-                    $type = pathinfo($name, PATHINFO_EXTENSION);
-                    $date = date("Y-m-d-H-i-s");
-                    //on insert dans la base de donnée
+                    list($date, $type) = resizeImage($_FILES['img'], $_REQUEST['username']);
+                    //on l'insert dans la base de donnée
                     try {
                         $photo_profil = $_REQUEST['username'] . '_' . $date . '.' . $type;
 
                         $sqlQuery = 'INSERT INTO utilisateur(pseudo, nom, prenom, mail, mot_de_passe, date_naissance, photo_profil, date_inscription) 
                         VALUES (\'' . $_REQUEST['username'] . '\', \'' . $_REQUEST['firstname'] . '\', \'' . $_REQUEST['name'] . '\', \'' . $_REQUEST['email'] . '\',
                          \'' . $_REQUEST['password'] . '\', \'' . $_REQUEST['birthdate'] . '\', \'' . $photo_profil . '\', \'' . date('Y-m-d') . '\')';
-
+                        echo $sqlQuery;
                         $bdd->query($sqlQuery);
 
-                        //on ajoute l'image au dossier
-                        move_uploaded_file($tmpName, '../img/user-images/' . $_REQUEST['username'] . '_' . $date . '.' . $type);
                         header("location:/pages/connexion.php?valid=true&msg=1");
 
                     } catch (PDOException $e) {
