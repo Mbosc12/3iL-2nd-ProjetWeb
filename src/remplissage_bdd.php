@@ -12,7 +12,7 @@
 		$sql = ("DROP TABLE IF EXISTS utilisateur ");
 		$conn->exec($sql);
 
-		$sql = "CREATE TABLE utilisateur(pseudo VARCHAR(50) NOT NULL, nom VARCHAR(50), prenom VARCHAR(50), mail VARCHAR(50), mot_de_passe VARCHAR(50) NOT NULL, date_naissance DATE, photo_profil VARCHAR(50), date_inscription TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(), PRIMARY KEY(mail))";
+		$sql = "CREATE TABLE utilisateur(pseudo VARCHAR(50) NOT NULL UNIQUE, nom VARCHAR(50), prenom VARCHAR(50), mail VARCHAR(50), mot_de_passe VARCHAR(50) NOT NULL, date_naissance DATE, photo_profil VARCHAR(50), date_inscription TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(), PRIMARY KEY(mail))";
 		// use exec() because no results are returned
 		$conn->exec($sql);
 		echo "1/4 Table \"utilisateur\" created </br>";

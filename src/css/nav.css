@@ -151,6 +151,12 @@
     all: unset;
 }
 
+.m-nav-dropdown > button > img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
 .m-nav-dropdown-menu {
     width: max-content;
     position: absolute;
