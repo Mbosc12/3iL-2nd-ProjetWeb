@@ -43,6 +43,28 @@ function searchUser(search) {
     request.send();
 }
 
+function setResponsiveNav() {
+    if (window.matchMedia("(max-width: 450px)").matches) {
+        var dropdownmenu = document.getElementsByClassName('m-nav-dropdown-menu');
+        if(document.getElementsByClassName("m-nav-responsive").length == 0) {
+            dropdownmenu[0].innerHTML = '<a href="../pages/newPost.php" class="m-nav-responsive">Nouveau post</a>' + dropdownmenu[0].innerHTML;
+            dropdownmenu[0].innerHTML = '<a href="../pages/index.php" class="m-nav-responsive">Accueil</a>' + dropdownmenu[0].innerHTML;
+        }
+    }
+}
+
+function unsetResponsiveNav() {
+    if (window.matchMedia("(min-width: 451px)").matches) {
+        var listResponsiveElement = document.getElementsByClassName("m-nav-responsive");
+        if(listResponsiveElement != null) {
+            for(var i = 0; i < listResponsiveElement.length; i++) {
+                listResponsiveElement[i].parentNode.removeChild(listResponsiveElement[i])
+            }
+        }
+    }
+}
+
+
 /* On utilise un eventListener plutôt que window.onLoad car cette fonction est déjà appelé
 * dans la page profile.php ce qui faisait que les deux rentraient en conflits. La fonction
 * dans le script nav.js (ici) était donc écrasée par celle dans profile.php.
@@ -57,5 +79,13 @@ window.addEventListener('load', function () {
             document.getElementById('m-nav-search-results').style.display = 'none';
         }
     });
+  
+  setResponsiveNav();
 });
+
+
+window.onresize = function() {
+    setResponsiveNav();
+    unsetResponsiveNav();
+}
 

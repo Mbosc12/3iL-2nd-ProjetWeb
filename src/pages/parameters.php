@@ -30,6 +30,7 @@
                          $msg = "Les mots de passe ne sont pas identiques";
                     } else {
                         Model::setPassword($_SESSION['mail'], $new_pass);
+                        echo '<script type="text/javascript"> document.location.replace(\'index.php?valid=true&msg=0\');</script>';
                     }
                 } else {
                     $msg = "Votre mot de passe actuel n'est pas correct";
@@ -41,7 +42,7 @@
                 include '../components/banner.php';            
                 echo '<script text="text/javascript">
                 var banner = document.getElementsByClassName("banner");
-                banner[0].style.marginTop = \'30px\';
+                banner[0].style.marginTop = \'50px\';
                 var displayBanner = setInterval(function(){ 
                     banner[0].style.display = "none";
                     clearInterval(displayBanner);
@@ -65,7 +66,7 @@
                 </form>
                 <?php
                     if(!empty($msg)) {
-                        header("location:/pages/parameters.php?error=1");
+                        echo '<script type="text/javascript"> document.location.replace(\'parameters.php?error=1&msg=0\');</script>';
                         echo '<span> '. $msg .'</span>';
                     }
                 ?>

@@ -42,9 +42,9 @@
         $desc = $_POST['desc'];
         list($date, $type) = resizeImage($_FILES['img'], $_SESSION['pseudo']);
         try {
-            Model::setPost($_SESSION['mail'], $_SESSION['pseudo'] . '_' . $date . '.' . $type, $desc);
-            //TODO
-            // die(header("location:/pages/index.php?valid=0&msg=2"));
+            move_uploaded_file($tmpName, '../img/user-images/' . $_SESSION['pseudo'] . '_' . $date . '.' . $type);
+            Model::setPost($_SESSION['mail'], $_SESSION['pseudo'] . '_' . $date . '.' . $type, $desc);    
+            echo '<script type="text/javascript"> document.location.replace(\'index.php?valid=true&msg=0\');</script>';
         } catch (PDOException $e) {
             print 'Error :' . $e . getMessage() . '</br>';
         }

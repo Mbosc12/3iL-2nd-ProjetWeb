@@ -58,7 +58,7 @@ function displayAllPost(publications) {
         for (let publication in publications) {
             let li = document.createElement("li");
             let photo_path = publications[publication].photo;
-            li.innerHTML = "<img src=\"../img/user-images/" + photo_path + "\">";
+            li.innerHTML = "<a href='../pages/modifPost.php?id="+ publications[publication].PK_post_id + "'><img src=\"../img/user-images/" + photo_path + "\"></a>";
             gallery.appendChild(li);
         }
     }

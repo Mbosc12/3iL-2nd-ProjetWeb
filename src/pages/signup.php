@@ -14,7 +14,7 @@
             include '../scripts/resizeImageFunc.php';
 
             if (!isset($_SESSION['pseudo'])) {
-            if (isset($_POST['email'])) {
+            if (isset($_POST['signup'])) {
                 $sqlMailVerify = 'SELECT COUNT(*) FROM utilisateur where mail = :mail OR pseudo = :username';
 
                 $stmt = $bdd->prepare($sqlMailVerify);
@@ -24,7 +24,7 @@
                 $count = $stmt->rowCount();
 
                 //si l'utilisateur défini une image
-                if (isset($_FILES['img'])) {
+                if (isset($_FILES['img']) && $_FILES["img"]['name'] != '') {
                     list($date, $type) = resizeImage($_FILES['img'], $_REQUEST['username']);
                     //on l'insert dans la base de donnée
                     try {
@@ -46,7 +46,7 @@
                 } else {
                     try {
                         //on insert dans la base de donnée
-                        $photo_profil = '../img/user-images/default_photo.jpeg';
+                        $photo_profil = 'default_photo.jpeg';
                         $sqlQuery = 'INSERT INTO utilisateur(pseudo, nom, prenom, mail, mot_de_passe, date_naissance, photo_profil, date_inscription) 
                         VALUES (\'' . $_REQUEST['username'] . '\', \'' . $_REQUEST['firstname'] . '\', \'' . $_REQUEST['name'] . '\', \'' . $_REQUEST['email'] . '\',
                          \'' . $_REQUEST['password'] . '\', \'' . $_REQUEST['birthdate'] . '\', \'' . $photo_profil . '\', \'' . date('Y-m-d') . '\')';

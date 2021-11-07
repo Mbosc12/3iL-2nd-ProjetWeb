@@ -11,6 +11,11 @@
                 <div class="banner b-red">
                     <span class="b-span"> La connexion n\'a pas pu être établie </span>
                 </div>';
+            } else if($_GET['msg'] == 2) {
+                echo '
+                <div class="banner b-red">
+                    <span class="b-span"> L\'inscription n\'a pas pu être validée. E-mail ou utilisateur déjà utilisé. </span>
+                </div>';
             }
         } else {
             if($_GET['msg'] == 0) {
