@@ -22,10 +22,12 @@
 		$endSize = 624;
 		$finalImage = imagecreatetruecolor($endSize, $endSize);
 		if ($type === "png") {
+			header("Content-type: image/png");
 			$image = imagecreatefrompng($tmpName);
 			imagecopyresampled($finalImage, $image, 0, 0, $offsetX, $offsetY, $endSize, $endSize, $square, $square);
 			imagepng($finalImage, '../img/user-images/' . $username . '_' . $date . '.' . $type);
 		} else {
+			header("Content-type: image/jpeg");
 			$image = imagecreatefromjpeg($tmpName);
 			imagecopyresampled($finalImage, $image, 0, 0, $offsetX, $offsetY, $endSize, $endSize, $square, $square);
 			imagejpeg($finalImage, '../img/user-images/' . $username . '_' . $date . '.' . $type);
