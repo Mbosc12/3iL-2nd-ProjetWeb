@@ -156,11 +156,13 @@
 		('sarah@gmail.com', 102, '2021-11-07'),
         ('jean@gmail.com', 102, '2021-11-07'),
         ('raph@gmail.com', 102, '2021-11-07'),
+        ('florent@gmail.com', 102, '2021-11-07'),
 	 	('antonin@gmail.com', 103, '2021-11-07'),
 		('sarah@gmail.com', 103, '2021-11-07'),
         ('jean@gmail.com', 103, '2021-11-07'),
         ('raph@gmail.com', 104, '2021-11-07'),
 		('sarah@gmail.com', 104, '2021-11-07'),
+		('florent@gmail.com', 104, '2021-11-07'),
         ('jean@gmail.com', 104, '2021-11-07'),
         ('raph@gmail.com', 103, '2021-11-07'),
         ('clementine@gmail.com', 103, '2021-11-07')";
