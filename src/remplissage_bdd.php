@@ -90,6 +90,7 @@
         ('jeanne@gmail.com', 'xavier@gmail.com', '2021-11-05'), 
         ('antoine@gmail.com', 'xavier@gmail.com', '2021-11-07'), 
         ('clementine@gmail.com', 'xavier@gmail.com', '2021-11-07'),
+        ('florent@gmail.com', 'xavier@gmail.com', '2021-11-07'),
 	    ('laurie@gmail.com', 'xavier@gmail.com', '2021-11-07'),
         ('julie@gmail.com', 'xavier@gmail.com', '2021-11-03'), 
         ('leo@gmail.com', 'xavier@gmail.com', '2021-11-02'), 
