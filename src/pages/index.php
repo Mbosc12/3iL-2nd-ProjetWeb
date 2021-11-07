@@ -40,8 +40,8 @@
                 include '../components/feed.php';
             ?>
         </main>
-        <!-- <script type='text/javascript'>
-            var username = "<?php echo $_SESSION['pseudo'] ?>";
-        </script> -->
+        <script type='text/javascript'>
+            let username = "<?php echo $_SESSION['pseudo'] ?>";
+        </script>
     </body>
 </html>
