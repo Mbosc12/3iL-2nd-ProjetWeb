@@ -106,7 +106,7 @@
 }
 
 #m-nav-search-results {
-    width: 375px;
+    width: 250px;
     max-height: 170px;
     background: white;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, .0975);
@@ -138,6 +138,8 @@
 }
 
 .m-nav-search-results-item > img {
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     margin-right: 15px;
 }

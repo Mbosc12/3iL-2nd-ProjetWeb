@@ -20,6 +20,9 @@ function displaySelectUserData(data) {
     if (data[0].prenom && data[0].nom) {
         document.getElementById('m-infos-main-name').innerText = data[0].prenom + ' ' + data[0].nom;
     }
+    if (data[0].photo_profil) {
+        document.getElementById('m-avatar-img').innerHTML = '<img src="../img/user-images/' + data[0].photo_profil + '">';
+    }
 }
 
 //Récupère tous le posts de l'utilisateur

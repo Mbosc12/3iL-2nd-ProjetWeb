@@ -19,9 +19,7 @@
             <div class="m-container">
                 <div id="m-pres">
                     <div id="m-avatar">
-                        <div id="m-avatar-img">
-                            <img src="../img/user-images/<?php echo $_SESSION['photo_profil']; ?>">
-                        </div>
+                        <div id="m-avatar-img"></div>
                     </div>
                     <div id="m-infos">
                         <div id="m-infos-m">

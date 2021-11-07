@@ -8,10 +8,11 @@ function displaySearchResults(users) {
     let searchResults = document.getElementById('m-nav-search-results');
     if (users.length !== 0) {
         for (let user of users) {
+            console.log(user);
             let div = document.createElement("div");
             let username = user.pseudo;
             div.innerHTML = "<a class='m-nav-search-results-item' href='../pages/profile.php?username=" + username + "'>" +
-                "<img src='#'>" + username +
+                '<img src="../img/user-images/' + user.photo_profil + '">' + username +
                 "</a>";
             searchResults.appendChild(div);
         }
