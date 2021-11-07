@@ -15,7 +15,7 @@
 		$sql = "CREATE TABLE utilisateur(pseudo VARCHAR(50) NOT NULL UNIQUE, nom VARCHAR(50), prenom VARCHAR(50), mail VARCHAR(50), mot_de_passe VARCHAR(50) NOT NULL, date_naissance DATE, photo_profil VARCHAR(50), date_inscription TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(), PRIMARY KEY(mail))";
 		// use exec() because no results are returned
 		$conn->exec($sql);
-		echo "1/4 Table \"utilisateur\" created </br>";
+		echo "1/8 - Table \"utilisateur\" created </br>";
 
 		// ------------------------------------------
 
@@ -25,7 +25,7 @@
 		$sql = "CREATE TABLE publication(PK_post_id INT AUTO_INCREMENT, FK_utilisateur_mail VARCHAR(50), message VARCHAR(50) NOT NULL, photo VARCHAR(50) NOT NULL, PRIMARY KEY(PK_post_id), FOREIGN KEY(FK_utilisateur_mail) REFERENCES utilisateur(mail) ON DELETE CASCADE)";
 		// use exec() because no results are returned
 		$conn->exec($sql);
-		echo "2/4 Table \"publication\" created </br>";
+		echo "2/8 - Table \"publication\" created </br>";
 
 
 		// ------------------------------------------
@@ -36,7 +36,7 @@
 		$sql = "CREATE TABLE suivre(FK_utilisateur_mail_1 VARCHAR(50), FK_utilisateur_mail_2 VARCHAR(50), date_follow TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(), PRIMARY KEY(FK_utilisateur_mail_1, FK_utilisateur_mail_2), FOREIGN KEY(FK_utilisateur_mail_1) REFERENCES utilisateur(mail), FOREIGN KEY(FK_utilisateur_mail_2) REFERENCES utilisateur(mail) ON DELETE CASCADE)";
 		// use exec() because no results are returned
 		$conn->exec($sql);
-		echo "3/4 Table \"suivre\" created </br>";
+		echo "3/8 - Table \"suivre\" created </br>";
 
 		// ------------------------------------------
 
@@ -46,7 +46,7 @@
 		$sql = "CREATE TABLE aimer(FK_utilisateur_mail VARCHAR(50), FK_post_id INT, date_like TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(), PRIMARY KEY(FK_utilisateur_mail, FK_post_id),FOREIGN KEY(FK_utilisateur_mail) REFERENCES utilisateur(mail) ON DELETE CASCADE, FOREIGN KEY(FK_post_id) REFERENCES publication(PK_post_id) ON DELETE CASCADE)";
 		// use exec() because no results are returned
 		$conn->exec($sql);
-		echo "4/4 Table \"aimer\" created </br>";
+		echo "4/8 - Table \"aimer\" created </br>";
 
 
 		// - - - - - - - - - - - - - - - - - - - - - //
@@ -72,7 +72,7 @@
 
 		// use exec() because no results are returned
 		$conn->exec($sql);
-		echo "Users created </br > ";
+		echo "5/8 - Users created </br > ";
 
 		$sql = "INSERT INTO suivre(FK_utilisateur_mail_1, FK_utilisateur_mail_2, date_follow) VALUES 
         ('julien@gmail.com', 'florent@gmail.com', '2021-11-03'), 
@@ -120,7 +120,7 @@
 
 		// use exec() because no results are returned
 		$conn->exec($sql);
-		echo "Followers created </br > ";
+		echo "6/8 - Followers created </br > ";
 
 		$sql = "INSERT INTO publication(PK_post_id, FK_utilisateur_mail, message, photo) VALUES 
         (212, 'florent@gmail.com', 'Nouvelle publication', 'florent_2021-11-07-11-31-11.jpeg'),
@@ -139,7 +139,7 @@
 
 		// use exec() because no results are returned
 		$conn->exec($sql);
-		echo "Publications created </br > ";
+		echo "7/8 - Publications created </br > ";
 
 		$sql = "INSERT INTO aimer(FK_utilisateur_mail, FK_post_id, date_like) VALUES
 		('sarah@gmail.com', 212, '2021-11-07'),
@@ -169,7 +169,7 @@
 
 		// use exec() because no results are returned
 		$conn->exec($sql);
-		echo "Likes created </br > ";
+		echo "8/8 - Likes created </br > ";
 	} catch (PDOException $e) {
 		echo $e->getMessage();
 	}
