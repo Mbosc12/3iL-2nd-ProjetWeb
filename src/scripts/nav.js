@@ -42,8 +42,11 @@ function searchUser(search) {
     request.send();
 }
 
-
-window.onload = function() {
+/* On utilise un eventListener plutôt que window.onLoad car cette fonction est déjà appelé
+* dans la page profile.php ce qui faisait que les deux rentraient en conflits. La fonction
+* dans le script nav.js (ici) était donc écrasée par celle dans profile.php.
+* */
+window.addEventListener('load', function () {
     let input = document.getElementById('m-nav-search-input').firstElementChild;
     input.addEventListener('input', () => {
         if (input.value !== '') {
@@ -53,5 +56,5 @@ window.onload = function() {
             document.getElementById('m-nav-search-results').style.display = 'none';
         }
     });
-}
+});
 
