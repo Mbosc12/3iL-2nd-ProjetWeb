@@ -42,9 +42,30 @@ function searchUser(search) {
     request.send();
 }
 
+function setResponsiveNav() {
+    if (window.matchMedia("(max-width: 450px)").matches) {
+        var dropdownmenu = document.getElementsByClassName('m-nav-dropdown-menu');
+        if(document.getElementsByClassName("m-nav-responsive").length == 0) {
+            dropdownmenu[0].innerHTML = '<a href="../pages/newPost.php" class="m-nav-responsive">Nouveau post</a>' + dropdownmenu[0].innerHTML;
+            dropdownmenu[0].innerHTML = '<a href="../pages/index.php" class="m-nav-responsive">Accueil</a>' + dropdownmenu[0].innerHTML;
+        }
+    }
+}
+
+function unsetResponsiveNav() {
+    if (window.matchMedia("(min-width: 451px)").matches) {
+        var listResponsiveElement = document.getElementsByClassName("m-nav-responsive");
+        if(listResponsiveElement != null) {
+            for(var i = 0; i < listResponsiveElement.length; i++) {
+                listResponsiveElement[i].parentNode.removeChild(listResponsiveElement[i])
+            }
+        }
+    }
+}
 
 window.onload = function() {
     let input = document.getElementById('m-nav-search-input').firstElementChild;
+
     input.addEventListener('input', () => {
         if (input.value !== '') {
             searchUser(input.value);
@@ -53,5 +74,12 @@ window.onload = function() {
             document.getElementById('m-nav-search-results').style.display = 'none';
         }
     });
+
+    setResponsiveNav();
+}
+
+window.onresize = function() {
+    setResponsiveNav();
+    unsetResponsiveNav();
 }
 

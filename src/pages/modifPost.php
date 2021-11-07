@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML>
 <html>
     <head>
@@ -8,13 +9,14 @@
         <script src="../scripts/main.js"></script>
         <script src="../scripts/nav.js"></script>
         <script src="../scripts/showImage.js"></script>
+        <script src="../scripts/delete.js"></script>
     </head>
     <body>
         <?php include '../components/nav.php'; ?>
         <main id="m-newPost">
             <article>
                 <h1 id="m-newPost-title"> Modifier la publication </h1>
-                <form id="m-newPost-form" method="post">
+                <form id="m-newPost-form" action="#" method="post">
                     <label>Photo</label>
                     <?php
                         include '../requests/Model.php';
@@ -23,29 +25,39 @@
                             $id = $_GET['id'];
                             try {
                                 $post = Model::getPost($id);
-                                var_dump($post[0]);
-                                foreach($post[0] as $e) {
-                                    echo $e;
-                                };
+                                foreach ($post as $p) {
+                                    $desc = $p->message;
+                                    $img = $p->photo;
+                                }
+
                                 if(isset($_POST['desc'])) {
                                     $desc = $_POST['desc'];
                                     Model::updatePost($id, $desc);  
+                                    echo '<script type="text/javascript"> document.location.replace(\'index.php?valid=true&msg=0\');</script>';
                                 }  
                             } catch (PDOException $e) {
                                 Print 'Error :'.$e.getMessage().'</br>';
                             }
                         }
+
+                        if(isset($_POST['delete'])) {
+                            if(file_exists('../img/user-images/'.$img)) {
+                                unlink('../img/user-images/'.$img);
+                            } 
+                        }
                     ?>
                     <div id="m-newPost-form-photo">
-                        <img id="showImage" src="#" alt="Image du post" style="display: none;">
+                        <?php echo '<img id="showImage" src="../img/user-images/'.$img.'" alt="Image du post">' ?>
                     </div>
                     <label>Description</label>
                     <label>
                         <textarea id="m-newPost-form-textarea" rows="5" cols="52" column maxlength="256" type="text"
-                                  name="desc"><?php echo $post[0]['message'];?></textarea>
+                                  name="desc"><?php echo $desc;?></textarea>
                     </label>
 
                     <input id="m-newPost-form-submit" type="submit" value="Modifier" name="submit">
+                    <input id="m-newPost-delete" type="submit" value="Supprimer" name="delete">
+                    <!-- onclick="deletePost(<?php echo $id; ?>)"> Supprimer la publication </button> -->
                 </form>
             </article>
         </main>

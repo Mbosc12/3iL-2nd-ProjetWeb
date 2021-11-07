@@ -61,6 +61,10 @@
     cursor: pointer;
 }
 
+#showResponsive {
+    display: none;
+}
+
 .m-nav-item {
     align-items: center;
 }
@@ -189,4 +193,16 @@
 
 .show {
     display: block;
+}
+
+@media screen and (max-device-width: 600px) {
+    #m-nav-logo > h2 {
+        display: none;
+    }
+}
+
+@media screen and (max-device-width: 450px) {
+    #m-nav-options .m-nav-options-icon {
+        display: none;
+    }
 }

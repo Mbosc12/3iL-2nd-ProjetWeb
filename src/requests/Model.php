@@ -285,6 +285,18 @@
 			}
 		}
 
+		public static function deletePost($id)
+		{
+			try {
+				$sql = "DELETE FROM publication WHERE PK_post_id = :id";
+				$values = array(':id' => $id);
+				$rep_prep = Model::$pdo->prepare($sql);
+				$rep_prep->execute($values);
+			} catch (PDOException $e) {
+				echo $e->getMessage();
+				die("Post introuvable");
+			}
+		}
 
 
 		// PARTIE PROFIL --------------------------------------------------------------------------------------------------
@@ -297,6 +309,19 @@
 				$rep->setFetchMode(PDO::FETCH_ASSOC);
 				return $rep->fetch();
 			} catch (PDOException $e) {
+				echo $e->getMessage();
+				die("Utilisateur introuvable");
+			}
+		}
+
+		public static function deleteProfil($mail)
+		{
+			try {
+				$sql = "DELETE FROM utilisateur WHERE mail = :mail";
+				$values = array(':mail' => $mail);
+				$rep_prep = Model::$pdo->prepare($sql);
+				$rep_prep->execute($values);
+			} catch (PDOException $e){
 				echo $e->getMessage();
 				die("Utilisateur introuvable");
 			}
