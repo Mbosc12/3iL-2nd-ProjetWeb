@@ -84,7 +84,20 @@ form > input {
     border: 1px solid transparent;
 }
 
-#showImage {
-    max-width: 640px;
+#m-signup-form-photo {
+    border: 2px dashed #dbdbdb;
+    max-width: 240px;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 7px;
+    text-align-last: center;
+    align-self: center;
+}
+
+
+#m-signup-form-photo > img {
+    max-width: 128px;
     height: auto;
+    margin: auto;
+    padding-bottom: 10px;
 }

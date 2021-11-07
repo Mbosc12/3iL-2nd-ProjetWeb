@@ -36,20 +36,17 @@
 
 <?php
     include '../requests/Model.php';
+    include '../scripts/resizeImageFunc.php';
 
     if (isset($_FILES['img'])) {
         $desc = $_POST['desc'];
-        $tmpName = $_FILES['img']['tmp_name'];
-        $name = $_FILES['img']['name'];
-        $type = pathinfo($name, PATHINFO_EXTENSION);
-        $date = date("Y-m-d-H-i-s");
-        
+        list($date, $type) = resizeImage($_FILES['img'], $_SESSION['pseudo']);
         try {
             move_uploaded_file($tmpName, '../img/user-images/' . $_SESSION['pseudo'] . '_' . $date . '.' . $type);
             Model::setPost($_SESSION['mail'], $_SESSION['pseudo'] . '_' . $date . '.' . $type, $desc);    
             echo '<script type="text/javascript"> document.location.replace(\'index.php?valid=true&msg=0\');</script>';
         } catch (PDOException $e) {
-            Print 'Error :'.$e.getMessage().'</br>';
+            print 'Error :' . $e . getMessage() . '</br>';
         }
     }
 ?>

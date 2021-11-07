@@ -8,10 +8,11 @@ function displaySearchResults(users) {
     let searchResults = document.getElementById('m-nav-search-results');
     if (users.length !== 0) {
         for (let user of users) {
+            console.log(user);
             let div = document.createElement("div");
             let username = user.pseudo;
             div.innerHTML = "<a class='m-nav-search-results-item' href='../pages/profile.php?username=" + username + "'>" +
-                "<img src='#'>" + username +
+                '<img src="../img/user-images/' + user.photo_profil + '">' + username +
                 "</a>";
             searchResults.appendChild(div);
         }
@@ -63,9 +64,13 @@ function unsetResponsiveNav() {
     }
 }
 
-window.onload = function() {
-    let input = document.getElementById('m-nav-search-input').firstElementChild;
 
+/* On utilise un eventListener plutôt que window.onLoad car cette fonction est déjà appelé
+* dans la page profile.php ce qui faisait que les deux rentraient en conflits. La fonction
+* dans le script nav.js (ici) était donc écrasée par celle dans profile.php.
+* */
+window.addEventListener('load', function () {
+    let input = document.getElementById('m-nav-search-input').firstElementChild;
     input.addEventListener('input', () => {
         if (input.value !== '') {
             searchUser(input.value);
@@ -74,9 +79,10 @@ window.onload = function() {
             document.getElementById('m-nav-search-results').style.display = 'none';
         }
     });
+  
+  setResponsiveNav();
+});
 
-    setResponsiveNav();
-}
 
 window.onresize = function() {
     setResponsiveNav();

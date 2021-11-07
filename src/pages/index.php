@@ -12,8 +12,9 @@
         <link rel="icon" sizes="192x192" href="../img/icons/favicon-ig.png">
         <script src="../scripts/main.js"></script>
         <script src="../scripts/nav.js"></script>
-        <script src="../scripts/follower_viewer.js"></script>
-        <script src="../scripts/post.js"></script>    </head>
+        <script src="../scripts/new_viewer.js"></script>
+        <script src="../scripts/post.js"></script>
+    </head>
     <body>
         <?php
             include '../components/nav.php';
@@ -31,9 +32,9 @@
         ?>
         <main id="main">
             <?php
-                //ancien viewer fait par mathis: à voir si on le garde avec le prof
+                // ancien viewer fait par mathis: à voir si on le garde avec le prof
                 // include '../components/follower_viewer.php';
-                //nouveau viewer plus simple
+                // nouveau viewer plus simple
                 include '../components/new_viewer.php';
             ?>
             <?php
