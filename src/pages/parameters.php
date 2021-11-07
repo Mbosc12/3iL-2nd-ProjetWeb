@@ -25,18 +25,22 @@
                     $new_pass = $_POST['new_pass'];
                     $conf_new_pass = $_POST['new_pass_confirmation'];
 
-                    $stm = Model::getPassword($_SESSION['mail'])['mot_de_passe'];
-                    echo $stm;
-                    echo $old_pass;
-                    if (strcmp($stm, $old_pass) == 0) {
-                        if (strcmp($new_pass, $conf_new_pass) != 0) {
-                            $msg = "Les mots de passe ne sont pas identiques";
+                    try {
+                        $stm = Model::getPassword($_SESSION['mail'])['mot_de_passe'];
+                        echo $stm;
+                        echo $old_pass;
+                        if (strcmp($stm, $old_pass) == 0) {
+                            if (strcmp($new_pass, $conf_new_pass) != 0) {
+                                $msg = "Les mots de passe ne sont pas identiques";
+                            } else {
+                                Model::setPassword($_SESSION['mail'], $new_pass);
+                                echo '<script type="text/javascript"> document.location.replace(\'index.php?valid=true&msg=0\');</script>';
+                            }
                         } else {
-                            Model::setPassword($_SESSION['mail'], $new_pass);
-                            echo '<script type="text/javascript"> document.location.replace(\'index.php?valid=true&msg=0\');</script>';
+                            $msg = "Votre mot de passe actuel n'est pas correct";
                         }
-                    } else {
-                        $msg = "Votre mot de passe actuel n'est pas correct";
+                    } catch(Exception $e) {
+                        Print 'Error :'. $e.getMessage().'</br>';
                     }
                 } else {
                     $msg = "Veuillez saisir les champs demandés";

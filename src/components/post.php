@@ -1,21 +1,27 @@
 <?php
     if (isset($_GET['id'])) {
-        $posts = Model::getPost($_GET['id']);
-        foreach ($posts as $post) {
-            $desc = $post->message;
-            $img = $post->photo;
-            $mail = $post->FK_utilisateur_mail;
-        }
+        try {
+            //récupération du post
+            $posts = Model::getPost($_GET['id']);
+            foreach ($posts as $post) {
+                $desc = $post->message;
+                $img = $post->photo;
+                $mail = $post->FK_utilisateur_mail;
+            }
+            //on récupère les infos du créateur du post
+            $userInfo = Model::selectUserByMail($mail);
+            foreach ($userInfo as $info) {
+                $pseudo = $info->pseudo;
+                $photo = $info->photo_profil;
+            }
 
-        $userInfo = Model::selectUserByMail($mail);
-        foreach ($userInfo as $info) {
-            $pseudo = $info->pseudo;
-            $photo = $info->photo_profil;
-        }
-
-        $likesInfo = Model::getLikes($_GET['id']);
-        foreach ($likesInfo as $info) {
-            $likes = $info[0];
+            //on récupère les likes du post
+            $likesInfo = Model::getLikes($_GET['id']);
+            foreach ($likesInfo as $info) {
+                $likes = $info[0];
+            }
+        } catch(PDOException $e) {
+            Print('ERROR: '.$e.getMessage().'</br>');
         }
     }
 ?>

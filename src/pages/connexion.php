@@ -18,38 +18,41 @@
     //if not connected
     if (!isset($_SESSION['pseudo'])) {
         //if username
-        if (isset($_POST['username'])) {
+        if (isset($_POST['login'])) {
             //catch
             $username = stripslashes($_REQUEST['username']);
             $password = stripslashes($_REQUEST['password']);
 
             //request
             $query = "SELECT * FROM `utilisateur` WHERE `pseudo`=:username and `mot_de_passe`=:password";
+            try {
+                $stmt = $bdd->prepare($query);
+                $stmt->bindParam('username', $username, PDO::PARAM_STR);
+                $stmt->bindValue('password', $password, PDO::PARAM_STR);
+                $stmt->execute();
+                $count = $stmt->rowCount();
 
-            $stmt = $bdd->prepare($query);
-            $stmt->bindParam('username', $username, PDO::PARAM_STR);
-            $stmt->bindValue('password', $password, PDO::PARAM_STR);
-            $stmt->execute();
-            $count = $stmt->rowCount();
+                //if we have a result; we save data in global var $_SESSION
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($count == 1 && !empty($row)) {
+                    $_SESSION['pseudo'] = $row['pseudo'];
+                    $_SESSION['nom'] = $row['nom'];
+                    $_SESSION['prenom'] = $row['prenom'];
+                    $_SESSION['mail'] = $row['mail'];
 
-            //if we have a result; we save data in global var $_SESSION
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($count == 1 && !empty($row)) {
-                $_SESSION['pseudo'] = $row['pseudo'];
-                $_SESSION['nom'] = $row['nom'];
-                $_SESSION['prenom'] = $row['prenom'];
-                $_SESSION['mail'] = $row['mail'];
-
-                try {
-                    $photo_profil = Model::getPhotoProfil($row['mail'])['photo_profil'];
-                    $_SESSION['photo_profil'] = $photo_profil;
-                } catch(PDOException $e) {
-                    Print 'Error :'. $e.getMessage().'</br>';
+                    try {
+                        $photo_profil = Model::getPhotoProfil($row['mail'])['photo_profil'];
+                        $_SESSION['photo_profil'] = $photo_profil;
+                    } catch(PDOException $e) {
+                        Print 'Error :'. $e.getMessage().'</br>';
+                    }
+                    header("location:/pages/index.php");
+                } else {
+                    $msg = "Les identifiants saisis sont incorrects !";
+                    header("location:/pages/connexion.php?error=1&msg=1");
                 }
-                header("location:/pages/index.php");
-            } else {
-                $msg = "Les identifiants saisis sont incorrects !";
-                header("location:/pages/connexion.php?error=1&msg=1");
+            } catch(PDOException $e) {
+                Print 'Error :'. $e.getMessage().'</br>';
             }
         }
         ?>

@@ -36,6 +36,7 @@
                                     echo '<script type="text/javascript"> document.location.replace(\'index.php\');</script>';
                                 }
 
+                                //si la description est touchée
                                 if(isset($_POST['desc'])) {
                                     $desc = $_POST['desc'];
                                     Model::updatePost($id, $desc);  
@@ -49,7 +50,11 @@
                         if(isset($_POST['delete'])) {
                             if(file_exists('../img/user-images/'.$img)) {
                                 unlink('../img/user-images/'.$img);
-                                Model::deletePost($id);
+                                try {
+                                    Model::deletePost($id);
+                                } catch(PDOException $e) {
+                                    Print 'Error :'. $e.getMessage().'</br>';
+                                }
                             } 
                         }
                     ?>

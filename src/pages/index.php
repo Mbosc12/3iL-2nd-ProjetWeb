@@ -32,9 +32,6 @@
         ?>
         <main id="main">
             <?php
-                // ancien viewer fait par mathis: à voir si on le garde avec le prof
-                // include '../components/follower_viewer.php';
-                // nouveau viewer plus simple
                 include '../components/new_viewer.php';
             ?>
             <?php

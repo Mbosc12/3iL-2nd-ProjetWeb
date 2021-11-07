@@ -1,6 +1,6 @@
 # Projet web - Instagram
 
-Ce projet une reproduction partiel du site instagram.com et quelques une de ses fonctionnalités.
+Ce projet est une reproduction partielle du site instagram.com et quelques-unes de ses fonctionnalités.
 
 ## Pour commencer
 
@@ -41,12 +41,12 @@ Une fois sur la page de connexion vous avez deux options :
 
 ### Connexion
 
-Dans le cas ou vous souhaiter vous connecter à votre compte existant, vous aurez besoin de remplir ces champs :
+Dans le cas où vous souhaitez vous connecter à votre compte existant, vous aurez besoin de remplir ces champs :
 
 - Nom d'utilisateur : xavier
 - Mot de passe : 123
 
-Cela vous permettra d'avoir un aperçu de notre viewer d'image sur la page d'accueil.
+Cela vous permettra d'avoir un aperçu de notre viewer d'images sur la page d'accueil.
 
 ### Création
 

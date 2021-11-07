@@ -16,24 +16,28 @@ if (isset($_POST['username'])){
  	
  	$query = "SELECT * FROM `utilisateur` WHERE `pseudo`=:username and `motdepass`=:password";
  	
- 	$stmt = $bdd->prepare($query);
- 	$stmt->bindParam('username', $username, PDO::PARAM_STR);
- 	$stmt->bindValue('password', $password, PDO::PARAM_STR);
- 	$stmt->execute();
- 	$count = $stmt->rowCount();
+	try {
+		$stmt = $bdd->prepare($query);
+		$stmt->bindParam('username', $username, PDO::PARAM_STR);
+		$stmt->bindValue('password', $password, PDO::PARAM_STR);
+		$stmt->execute();
+		$count = $stmt->rowCount();
 
-	$row = $stmt->fetch(PDO::FETCH_ASSOC);
-    	if($count == 1 && !empty($row)) {
-	        $_SESSION['pseudo'] = $row['pseudo'];
-	        $_SESSION['nom'] = $row['nom'];
-	        $_SESSION['prenom'] = $row['prenom'];
-       		$msg = "Bienvenue !".$row['pseudo'];
-      	} else {
-        	$msg = "Les identifiants saisis sont incorrects !";
-      	}
-  } else {
-    $msg = "Veuillez saisir un utilisateur et un mot de passe!";
-  }
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+			if($count == 1 && !empty($row)) {
+				$_SESSION['pseudo'] = $row['pseudo'];
+				$_SESSION['nom'] = $row['nom'];
+				$_SESSION['prenom'] = $row['prenom'];
+				$msg = "Bienvenue !".$row['pseudo'];
+			} else {
+				$msg = "Les identifiants saisis sont incorrects !";
+			}
+		} else {
+			$msg = "Veuillez saisir un utilisateur et un mot de passe!";
+		}
+	} catch(PDOException $e) {
+		Print 'Error :'. $e.getMessage().'</br>';
+	}
 ?>
 
 <!DOCTYPE html>
