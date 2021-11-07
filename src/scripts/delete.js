@@ -1,5 +1,4 @@
 function deletePost(id) {
-    console.log(id)
     let url = "../requests/deletePost.php?id="+id;
     let request = new XMLHttpRequest();
     request.open("POST", url, true);

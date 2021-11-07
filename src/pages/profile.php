@@ -66,7 +66,7 @@
                 let username = '<?php echo $_GET['username']; ?>';
                 let email = '<?php echo $_SESSION['mail']; ?>';
                 requestSelectUser(username);
-                requestGetAllPosts(username);
+                requestGetAllPosts(username, email);
                 requestGetCountFollowers(username);
                 requestGetCountSubscriptions(username);
                 let subButton = document.getElementById('m-infos-li');

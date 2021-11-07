@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 55px;
+    margin-top: 85px;
     justify-content: center;
     height: 100%;
 }
@@ -20,6 +20,7 @@ article {
     font-size: 40px;
     color: rgba(38, 38, 38, 1);
     line-height: 32px;
+    text-align: center;
 }
 
 #m-newPost-form {
@@ -45,7 +46,7 @@ article {
 
 
 #m-newPost-form-photo > img {
-    max-width: 640px;
+    max-width: 150px;
     height: auto;
 }
 

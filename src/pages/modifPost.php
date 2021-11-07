@@ -16,7 +16,7 @@
         <main id="m-newPost">
             <article>
                 <h1 id="m-newPost-title"> Modifier la publication </h1>
-                <form id="m-newPost-form" action="#" method="post">
+                <form id="m-newPost-form" method="post">
                     <label>Photo</label>
                     <?php
                         include '../requests/Model.php';
@@ -28,6 +28,12 @@
                                 foreach ($post as $p) {
                                     $desc = $p->message;
                                     $img = $p->photo;
+                                    $mail = $p->FK_utilisateur_mail;
+                                }
+
+                                //si jamais l'utilisateur cherche à modifier ou supprimer une publication qui ne lui appartient pas
+                                if($_SESSION['mail'] != $mail) {
+                                    echo '<script type="text/javascript"> document.location.replace(\'index.php\');</script>';
                                 }
 
                                 if(isset($_POST['desc'])) {
@@ -43,6 +49,7 @@
                         if(isset($_POST['delete'])) {
                             if(file_exists('../img/user-images/'.$img)) {
                                 unlink('../img/user-images/'.$img);
+                                Model::deletePost($id);
                             } 
                         }
                     ?>
@@ -57,7 +64,6 @@
 
                     <input id="m-newPost-form-submit" type="submit" value="Modifier" name="submit">
                     <input id="m-newPost-delete" type="submit" value="Supprimer" name="delete">
-                    <!-- onclick="deletePost(<?php echo $id; ?>)"> Supprimer la publication </button> -->
                 </form>
             </article>
         </main>

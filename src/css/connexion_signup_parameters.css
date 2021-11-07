@@ -101,3 +101,8 @@ form > input {
     margin: auto;
     padding-bottom: 10px;
 }
+
+#user-delete {
+    background: #d53030;
+    color: white;
+}

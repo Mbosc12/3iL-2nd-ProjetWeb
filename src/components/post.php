@@ -35,7 +35,7 @@
                 </svg>
             </button>
             <div class="post-dropdown-menu">
-                <a onclick="">Se désabonner</a>
+                <a onclick="requestUnfollowUser('<?php echo $_SESSION['mail'];?>','<?php echo $pseudo; ?>')">Se désabonner</a>
                 <a>Annuler</a>
             </div>
         </div>

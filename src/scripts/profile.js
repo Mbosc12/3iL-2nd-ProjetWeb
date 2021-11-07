@@ -26,7 +26,7 @@ function displaySelectUserData(data) {
 }
 
 //Récupère tous le posts de l'utilisateur
-function requestGetAllPosts(username) {
+function requestGetAllPosts(username, email) {
     let url = "../requests/getAllPosts.php?username=" + username;
     let request = new XMLHttpRequest();
     let data;
@@ -38,7 +38,7 @@ function requestGetAllPosts(username) {
             } else {
                 data = JSON.parse(request.responseText);
             }
-            displayAllPost(data);
+            displayAllPost(data, email);
         }
     }
     request.send();
@@ -47,7 +47,7 @@ function requestGetAllPosts(username) {
 }
 
 //Affiche tous les posts de l'utilisateur
-function displayAllPost(publications) {
+function displayAllPost(publications, email) {
     let publication_count = document.getElementById('m-infos-publications');
     let gallery = document.getElementById('m-gallery').getElementsByTagName('ul')[0];
     if (publications.length === 0) {
@@ -58,7 +58,11 @@ function displayAllPost(publications) {
         for (let publication in publications) {
             let li = document.createElement("li");
             let photo_path = publications[publication].photo;
-            li.innerHTML = "<a href='../pages/modifPost.php?id="+ publications[publication].PK_post_id + "'><img src=\"../img/user-images/" + photo_path + "\"></a>";
+            if(email == publications[publication].FK_utilisateur_mail) {
+                li.innerHTML = "<a href='../pages/modifPost.php?id="+ publications[publication].PK_post_id + "'><img src=\"../img/user-images/" + photo_path + "\"></a>";
+            } else {
+                li.innerHTML = "<img src=\"../img/user-images/" + photo_path + "\">";
+            }
             gallery.appendChild(li);
         }
     }

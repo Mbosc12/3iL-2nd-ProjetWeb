@@ -63,3 +63,10 @@ function isLiked(email, postId) {
     request.send();
 }
 
+function requestUnfollowUser(email_1, username_2) {
+    let url = "../requests/unfollowUser.php?email_1=" + email_1 + "&username_2=" + username_2;
+    let request = new XMLHttpRequest();
+    request.open("GET", url, true);
+    request.send();
+}
+
